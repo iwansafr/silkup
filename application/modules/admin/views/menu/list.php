@@ -7,7 +7,7 @@ $ext = '';
 if(!empty($p_id))
 {
 	$form->setWhere('par_id = '.$p_id);
-	$data = $this->db->query('SELECT * FROM menu WHERE id = ?', $p_id)->row_array();
+	$data = $this->db->query('SELECT position_id FROM menu WHERE id = ?', $p_id)->row_array();
 	$id = @$data['position_id'];
 	$ext = '&p_id='.$p_id;
 }else{

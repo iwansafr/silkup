@@ -2052,7 +2052,6 @@ class Zea
 		if(!empty($_POST))
 		{
 			$this->success = TRUE;
-			pr($_POST);
 			if(!empty($this->func))
 			{
 				$this->func();
