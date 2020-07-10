@@ -8,11 +8,7 @@ if(!empty($role_member))
 
 	if(check_role('member'))
 	{
-		$lpk = $this->db->query('SELECT member.param->>"$.lpk_id" AS id FROM member WHERE user_id = ?',$user['id'])->row_array();
-		if(!empty($lpk))
-		{
-			$id = $lpk['id'];
-		}
+		$id = $this->member_model->get_lpk_id();
 	}
 
 	$form->setTable('member');
