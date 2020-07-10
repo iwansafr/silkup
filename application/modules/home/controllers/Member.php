@@ -7,6 +7,7 @@ class Member extends CI_Controller
 		parent::__construct();
 		$this->db->cache_off();
 		$this->load->model('home_model');
+		$this->load->model('admin/member_model');
 		$this->load->library('esg');
 		$this->load->library('ZEA/zea');
 	}
@@ -27,7 +28,7 @@ class Member extends CI_Controller
 		$name = $this->db->query('SELECT name FROM member WHERE id = ? ',$id)->row_array();
 		$name = !empty($name['name']) ? $name['name'] : '';
 
-		$role_siswa = $this->db->query('SELECT id,title FROM user_role WHERE title = ?','siswa')->row_array();
+		$role_siswa = $this->member_model->member_role('siswa');
 
 		$this->load->view('index',['name'=>$name,'id'=>$id,'role_siswa'=>$role_siswa]);
 	}
