@@ -11,6 +11,10 @@ if(is_admin() || is_root())
 	$form->setNumbering(true);
 
 	$form->addInput('id','plaintext');
+	$form->setLabel('id','action');
+	$form->setPlainText('id',[
+		base_url('admin/member/siswa/{id}')=>'Data Siswa'
+	]);
 	$form->addInput('title','plaintext');
 	$form->addInput('image','thumbnail');
 	$form->addInput('description','plaintext');

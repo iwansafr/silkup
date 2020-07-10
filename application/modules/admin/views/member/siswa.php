@@ -1,20 +1,35 @@
 <?php
 if(!empty($role_member))
 {
+	$id = !empty($id) ? intval($id) : 0;
 	$form = new zea();
+
 	$form->init('roll');
+
+	if(check_role('member'))
+	{
+		$lpk = $this->db->query('SELECT member.param->>"$.lpk_id" AS id FROM member WHERE user_id = ?',$user['id'])->row_array();
+		if(!empty($lpk))
+		{
+			$id = $lpk['id'];
+		}
+	}
 
 	$form->setTable('member');
 	$form->search();
 	$form->join('user','ON(member.user_id = user.id)',
 		'member.id, member.name, member.param->>"$.nama" AS nama,
-		 member.param->>"$.lpk_id" AS lpk,
 		 member.param->>"$.alamat" AS alamat,
 		 user.username,
 		 member.param->>"$.email" AS email,
 		 member.param->>"$.user_role_id" AS user_role_id
 		 ');
-	$form->setWhere('member.param->>"$.user_role_id" = '.$role_member['id']);
+	$where = '';
+	if(!empty($id))
+	{
+		$where = ' AND member.param->>"$.lpk_id" = '.$id;
+	}
+	$form->setWhere('member.param->>"$.user_role_id" = '.$role_member['id'].' '.$where);
 	$form->setParamName(uniqid());
 	$form->param_field = 'param';
 	$form->addInput('id','plaintext');
@@ -24,9 +39,6 @@ if(!empty($role_member))
 		[base_url('admin/member/edit?id={id}')=>'edit']
 	);
 	$form->addInput('nama','plaintext');
-	$form->addInput('lpk','dropdown');
-	$form->tableOptions('lpk','lpk','id','title');
-	$form->setAttribute('lpk','disabled');
 	$form->addInput('name','plaintext');
 	$form->setLabel('name','kode');
 	$form->addInput('alamat','plaintext');
@@ -47,11 +59,11 @@ if(!empty($role_member))
 
 	$form->setDelete(true);
 	$form->setEdit(true);
-	// $form->setEditLink('member/edit?id=');
+	$form->setEditLink('siswa_edit?id=');
 
 	$form->setEnableDeleteParam(false);
 	$form->setNumbering(true);
-	$form->setUrl('admin/member/clear_list');
+	$form->setUrl('admin/member/clear_siswa/'.$id);
 
 	$form->form();
 }else{

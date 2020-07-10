@@ -35,4 +35,36 @@ class Member extends CI_Controller
 		$role_member = $this->member_model->member_role('member');
 		$this->load->view('index',['name'=>$name,'id'=>$id,'role_member'=>$role_member]);
 	}
+
+	public function siswa($id = 0)
+	{
+		$role_member = $this->member_model->member_role('siswa');
+		$title = !empty($id) ? $this->db->query('SELECT title FROM lpk WHERE id = ?',$id)->row_array() : '';
+		if(!empty($title))
+		{
+			$this->esg_model->set_nav_title('data siswa '.$title['title']);
+		}
+		$this->load->view('index',['role_member'=>$role_member,'id'=>$id]);
+	}
+
+	public function clear_siswa($id = 0)
+	{
+		$role_member = $this->member_model->member_role('siswa');
+		$title = !empty($id) ? $this->db->query('SELECT title FROM lpk WHERE id = ?',$id)->row_array() : '';
+		if(!empty($title))
+		{
+			$this->esg_model->set_nav_title('data siswa '.$title['title']);
+		}
+		$this->load->view('member/siswa',['role_member'=>$role_member,'id'=>$id]);
+	}
+
+	public function siswa_edit()
+	{
+		$id = !empty($_GET['id']) ? intval($_GET['id']) : 0;
+		$name = $this->db->query('SELECT name FROM member WHERE id = ? ',$id)->row_array();
+		$name = !empty($name['name']) ? $name['name'] : '';
+
+		$role_member = $this->member_model->member_role('siswa');
+		$this->load->view('index',['name'=>$name,'id'=>$id,'role_member'=>$role_member]);
+	}
 }
