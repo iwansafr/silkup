@@ -27,7 +27,7 @@
 	      		<div class="col-md-3">
 	      			<div class="box box-primary">
 		            <div class="box-header with-border">
-		              <h3 class="box-title">Recently Added Products</h3>
+		              <h3 class="box-title">LPK Populer</h3>
 
 		              <div class="box-tools pull-right">
 		                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -42,10 +42,10 @@
 		                    <img src="<?php echo image_module();?>" alt="Product Image">
 		                  </div>
 		                  <div class="product-info">
-		                    <a href="javascript:void(0)" class="product-title">Samsung TV
+		                    <a href="javascript:void(0)" class="product-title">LPK 1
 		                      <span class="label label-warning pull-right">$1800</span></a>
 		                    	<span class="product-description">
-	                          Samsung 32" 1080p 60Hz LED Smart HDTV.
+	                          Lembaga Pelatihan Kerja 1
 		                      </span>
 		                  </div>
 		                </li>
@@ -55,11 +55,11 @@
 		                    <img src="<?php echo image_module();?>" alt="Product Image">
 		                  </div>
 		                  <div class="product-info">
-		                    <a href="javascript:void(0)" class="product-title">Bicycle
+		                    <a href="javascript:void(0)" class="product-title">LPK 2
 		                      <span class="label label-info pull-right">$700</span></a>
 		                    <span class="product-description">
-		                          26" Mongoose Dolomite Men's 7-speed, Navy Blue.
-		                        </span>
+                          Lembaga Pelatihan Kejra 2
+                        </span>
 		                  </div>
 		                </li>
 		                <!-- /.item -->
@@ -68,38 +68,24 @@
 		                    <img src="<?php echo image_module();?>" alt="Product Image">
 		                  </div>
 		                  <div class="product-info">
-		                    <a href="javascript:void(0)" class="product-title">Xbox One <span
+		                    <a href="javascript:void(0)" class="product-title">LPK 3 <span
 		                        class="label label-danger pull-right">$350</span></a>
 		                    <span class="product-description">
-		                          Xbox One Console Bundle with Halo Master Chief Collection.
-		                        </span>
+                          Lempaga Pelatihan Kerja 3
+                        </span>
 		                  </div>
 		                </li>
-		                <!-- /.item -->
-		                <li class="item">
-		                  <div class="product-img">
-		                    <img src="<?php echo image_module();?>" alt="Product Image">
-		                  </div>
-		                  <div class="product-info">
-		                    <a href="javascript:void(0)" class="product-title">PlayStation 4
-		                      <span class="label label-success pull-right">$399</span></a>
-		                    <span class="product-description">
-		                          PlayStation 4 500GB Console (PS4)
-		                        </span>
-		                  </div>
-		                </li>
-		                <!-- /.item -->
 		              </ul>
 		            </div>
 		            <!-- /.box-body -->
 		            <div class="box-footer text-center">
-		              <a href="javascript:void(0)" class="uppercase">View All Products</a>
+		              <a href="javascript:void(0)" class="uppercase">Lihat Semua LPK</a>
 		            </div>
 		            <!-- /.box-footer -->
 		          </div>
 		          <div class="box box-danger">
 		            <div class="box-header with-border">
-		              <h3 class="box-title">Temukan Produk</h3>
+		              <h3 class="box-title">Kursus Populer</h3>
 
 		              <div class="box-tools pull-right">
 		                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -110,28 +96,28 @@
 		              <ul class="products-list product-list-in-box">
 		                <li class="item">
 		                  <div class="product-img" style="width: 100%;text-align: center;">
-		                    <a href="javascript:void(0)" class="product-title">lelang
+		                    <a href="javascript:void(0)" class="product-title">Kursus 1
 		                    </a>
 	                    	<span class="product-description">
-                          Kumpulan Produk dicari
+                          Kursus tentang 1
 	                      </span>
 		                  </div>
 		                </li>
 		                <li class="item">
 											<div class="product-img" style="width: 100%;text-align: center;">
-		                    <a href="javascript:void(0)" class="product-title">dijual
+		                    <a href="javascript:void(0)" class="product-title">Kursus 2
 		                    </a>
 	                    	<span class="product-description">
-                          Kumpulan Produk dicari
+                          Kursus tentang 2
 	                      </span>
 		                  </div>
 		                </li>
 		                <li class="item">
 		                  <div class="product-img" style="width: 100%;text-align: center;">
-		                    <a href="javascript:void(0)" class="product-title">dicari
+		                    <a href="javascript:void(0)" class="product-title">Kursus 3
 		                    </a>
 	                    	<span class="product-description">
-                          Kumpulan Produk dicari
+                          Kursus tentang 3
 	                      </span>
 		                  </div>
 		                </li>
@@ -140,39 +126,7 @@
 		          </div>
 	      		</div>
 	      		<div class="col-md-9">
-	      			<div class="box box-warning">
-		            <div class="box-header with-border">
-		              <h3 class="box-title">Produk Terbaru</h3>
-
-		              <div class="box-tools pull-right">
-		                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-		                </button>
-		              </div>
-		            </div>
-		            <!-- /.box-header -->
-		            <div class="box-body">
-			      			<div class="timeline-item">
-		                <div class="timeline-body" style="text-align: center;">
-		                	<?php for ($i=0; $i < 20; $i++) {
-		                		?>
-		                		<div class="col-md-3">
-				                	<div class="panel panel-default">
-				                		<div class="panel-body" style="padding: 0;">
-				                			<img src="<?php echo image_module() ?>" alt="" class="margin" width="150">
-				                			<span class="label pull-right bg-blue">dijual</span>
-				                			<hr>
-				                			<span class="product-description">
-		                          	PlayStation 4 500GB Console (PS4)
-		                        	</span>
-				                		</div>
-				                	</div>
-		                		</div>
-			                	<?php
-		                	} ?>
-		                </div>
-		              </div>
-		            </div>
-		          </div>
+	      			<?php $this->load->view($mod['content']) ?>
 	      		</div>
 	      	</div>
 	      </section>
