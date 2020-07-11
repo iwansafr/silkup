@@ -1,7 +1,6 @@
 <?php
 if(!empty($role_siswa))
 {
-	pr($_POST);
 	$this->zea->init('param');
 
 	$this->zea->setTable('member');
