@@ -26,64 +26,7 @@
 			      <section class="content">
 			      	<div class="row">
 			      		<div class="col-md-3">
-			      			<div class="box box-primary">
-				            <div class="box-header with-border">
-				              <h3 class="box-title">LPK Populer</h3>
-
-				              <div class="box-tools pull-right">
-				                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-				                </button>
-				              </div>
-				            </div>
-				            <!-- /.box-header -->
-				            <div class="box-body">
-				              <ul class="products-list product-list-in-box">
-				                <li class="item">
-				                  <div class="product-img">
-				                    <img src="<?php echo image_module();?>" alt="Product Image">
-				                  </div>
-				                  <div class="product-info">
-				                    <a href="javascript:void(0)" class="product-title">LPK 1
-				                      <span class="label label-warning pull-right">$1800</span></a>
-				                    	<span class="product-description">
-			                          Lembaga Pelatihan Kerja 1
-				                      </span>
-				                  </div>
-				                </li>
-				                <!-- /.item -->
-				                <li class="item">
-				                  <div class="product-img">
-				                    <img src="<?php echo image_module();?>" alt="Product Image">
-				                  </div>
-				                  <div class="product-info">
-				                    <a href="javascript:void(0)" class="product-title">LPK 2
-				                      <span class="label label-info pull-right">$700</span></a>
-				                    <span class="product-description">
-		                          Lembaga Pelatihan Kejra 2
-		                        </span>
-				                  </div>
-				                </li>
-				                <!-- /.item -->
-				                <li class="item">
-				                  <div class="product-img">
-				                    <img src="<?php echo image_module();?>" alt="Product Image">
-				                  </div>
-				                  <div class="product-info">
-				                    <a href="javascript:void(0)" class="product-title">LPK 3 <span
-				                        class="label label-danger pull-right">$350</span></a>
-				                    <span class="product-description">
-		                          Lempaga Pelatihan Kerja 3
-		                        </span>
-				                  </div>
-				                </li>
-				              </ul>
-				            </div>
-				            <!-- /.box-body -->
-				            <div class="box-footer text-center">
-				              <a href="javascript:void(0)" class="uppercase">Lihat Semua LPK</a>
-				            </div>
-				            <!-- /.box-footer -->
-				          </div>
+			      			<?php $this->load->view('popular_lpk') ?>
 				          <div class="box box-danger">
 				            <div class="box-header with-border">
 				              <h3 class="box-title">Kursus Populer</h3>
