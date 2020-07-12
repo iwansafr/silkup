@@ -23,7 +23,6 @@ if(!empty($data))
 	    </div>
 	  </div>
 	  <div class="box-footer">
-			<a href="<?php echo base_url('home/lpk/daftar_program/'.$data['id']) ?>" class="btn btn-success btn-lg"><i class="fa fa-user-plus"></i> Daftar</a>
 	  </div>
 	</div>
 	<?php

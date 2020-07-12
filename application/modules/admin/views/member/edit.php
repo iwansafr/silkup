@@ -1,5 +1,4 @@
 <?php
-
 if(!empty($role_member))
 {
 	$this->zea->init('param');

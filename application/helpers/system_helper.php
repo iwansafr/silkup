@@ -578,3 +578,56 @@ function user($key = '')
 	}
 	return $user;
 }
+
+function esg_encrypt($string = '',$key = '')
+{
+	if(empty($key))
+	{
+		$key = 'esoftgreat';
+		if(!empty($_SESSION[base_url().'_logged_in']['username']))
+		{
+			$key = $_SESSION[base_url().'_logged_in']['username'];
+		}
+	}
+	if(!empty($string))
+	{
+		$ciphering = "AES-128-CTR"; 
+		// Use OpenSSl Encryption method 
+		$iv_length = openssl_cipher_iv_length($ciphering); 
+		$options = 0; 
+
+		// Non-NULL Initialization Vector for encryption 
+		$encryption_iv = '1234567891011121'; 
+
+		// Store the encryption key 
+		$encryption_key = $key;
+
+		// Use openssl_encrypt() function to encrypt the data 
+		$encryption = openssl_encrypt($string, $ciphering, 
+					$encryption_key, $options, $encryption_iv);
+		return $encryption;
+	}
+}
+
+function esg_decrypt($string = '', $key = '')
+{
+	if(empty($key))
+	{
+		$key = 'esoftgreat';
+		if(!empty($_SESSION[base_url().'_logged_in']['username']))
+		{
+			$key = $_SESSION[base_url().'_logged_in']['username'];
+		}
+	}
+
+	if(!empty($string))
+	{
+		$ciphering = "AES-128-CTR"; 
+		$decryption_key = $key;
+		$options = 0; 
+		$decryption_iv = '1234567891011121'; 
+		$decryption=openssl_decrypt ($string, $ciphering, 
+		$decryption_key, $options, $decryption_iv);
+		return $decryption;
+	}
+}

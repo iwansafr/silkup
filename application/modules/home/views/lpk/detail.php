@@ -19,6 +19,8 @@ if(!empty($data))
 					</center>
 					<hr>
 					<?php echo $data['description'] ?>
+					<hr>
+					<center><a href="<?php echo base_url('home/member/daftar/'.$data['id']) ?>" class="btn btn-success btn-lg"><i class="fa fa-user-plus"></i> Daftar</a></center>
 	      </div>
 	    </div>
 	  </div>

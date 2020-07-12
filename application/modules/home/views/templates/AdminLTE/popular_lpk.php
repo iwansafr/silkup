@@ -12,10 +12,10 @@
 	      <?php foreach ($popular_lpk as $key => $value): ?>
 		      <li class="item">
 		        <div class="product-img">
-		          <img src="<?php echo image_module('lpk',$value['image']);?>" alt="Product Image">
+		          <img src="<?php echo image_module('lpk',$value['id'].'/'.$value['image']);?>" alt="Product Image">
 		        </div>
 		        <div class="product-info">
-		          <a href="javascript:void(0)" class="product-title"><?php echo $value['title'] ?>
+		          <a href="<?php echo base_url('home/lpk/detail/'.$value['id'].'/'.urlencode(str_replace(' ','-',$value['title']))) ?>" class="product-title"><?php echo $value['title'] ?>
 		            <span class="label label-warning pull-right"><?php echo $value['total'].' member'; ?></span></a>
 		          	<span class="product-description">
 		              <?php echo $value['description'] ?>

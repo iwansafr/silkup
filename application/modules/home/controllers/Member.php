@@ -8,6 +8,7 @@ class Member extends CI_Controller
 		$this->db->cache_off();
 		$this->load->model('home_model');
 		$this->load->model('admin/member_model');
+		$this->load->model('lpk_model');
 		$this->load->library('esg');
 		$this->load->library('ZEA/zea');
 	}
@@ -22,14 +23,22 @@ class Member extends CI_Controller
 		$this->load->view('member/index');
 	}
 
-	public function daftar()
+	public function daftar($lpk_id = 0)
 	{
-		$id = !empty($_GET['id']) ? intval($_GET['id']) : 0;
+		$id = 0;
+		if(!empty($_SESSION[base_url('_logged_in')]))
+		{
+			$id = $this->db->query('SELECT id FROM member WHERE user_id = ?',$_SESSION[base_url('_logged_in')]['id'])->row_array();
+			if(!empty($id['id']))
+			{
+				$id = $id['id'];
+			}
+		}
 		$name = $this->db->query('SELECT name FROM member WHERE id = ? ',$id)->row_array();
 		$name = !empty($name['name']) ? $name['name'] : '';
-
+		$lpk = $this->lpk_model->get_lpk($lpk_id);
 		$role_siswa = $this->member_model->member_role('siswa');
 
-		$this->load->view('index',['name'=>$name,'id'=>$id,'role_siswa'=>$role_siswa]);
+		$this->load->view('index',['name'=>$name,'id'=>$id,'role_siswa'=>$role_siswa,'lpk'=>['id'=>$lpk_id,'data'=>$lpk]]);
 	}
 }

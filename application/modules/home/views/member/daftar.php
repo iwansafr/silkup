@@ -1,9 +1,15 @@
 <?php
-if(!empty($role_siswa))
+if(!empty($role_siswa) && ((!empty($lpk['id']) && !empty($lpk['data'])) || (empty($lpk['id']) && empty($lpk['data'])) ) )
 {
 	$this->zea->init('param');
 
 	$this->zea->setTable('member');
+	if (!empty($lpk['data']))
+	{
+		$this->zea->setHeading('Form Pendaftaran LPK '.$lpk['data']['title']);	
+		$this->zea->addInput('lpk_id','static');
+		$this->zea->setValue('lpk_id',$lpk['id']);
+	}
 	$this->zea->setId($id);
 	$name = !empty($name) ? $name : uniqid();
 	$this->zea->setParamName($name);
@@ -28,21 +34,12 @@ if(!empty($role_siswa))
 	$this->zea->setType('email','email');
 	$this->zea->addInput('password','password');
 
-	// $this->zea->addInput('user_role_id','dropdown');
-	// $this->zea->setLabel('user_role_id','Level');
-	// $this->zea->setOptions('user_role_id',[$role_siswa['id']=>$role_siswa['title']]);
-
 	$this->zea->addInput('user_role_id','static');
 	$this->zea->setValue('user_role_id',$role_siswa['id']);
 
 	$this->zea->startCollapse('username','User Detail');
 	$this->zea->endCollapse('user_role_id');
 	$this->zea->setCollapse('username',FALSE);
-	if(!empty($user_id))
-	{
-		$this->zea->addInput('user_id','static');
-		$this->zea->setValue('user_id',$user_id);
-	}
 
 	$this->zea->setEnableDeleteParam(false);
 	$this->zea->setFormName('member_edit');

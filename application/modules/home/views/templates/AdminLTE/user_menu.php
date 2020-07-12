@@ -90,23 +90,25 @@
           </li>
         </ul>
       </li>
-      <!-- User Account Menu -->
       <li class="dropdown user user-menu">
-        <!-- Menu Toggle Button -->
+        <?php
+        $user = $_SESSION[base_url('_logged_in')];
+        $image = image_module('user',$user['id'].'/'.$user['image']);
+        ?>
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
           <!-- The user image in the navbar-->
-          <img src="<?php echo image_module('config/logo',$logo['image']) ?>" class="user-image" alt="User Image">
+          <img src="<?php echo $image ?>" class="user-image" alt="User Image">
           <!-- hidden-xs hides the username on small devices so only the image appears. -->
-          <span class="hidden-xs">Alexander Pierce</span>
+          <span class="hidden-xs"><?php echo $_SESSION[base_url('_logged_in')]['username'] ?></span>
         </a>
         <ul class="dropdown-menu">
           <!-- The user image in the menu -->
-          <li class="user-header">
-            <img src="<?php echo image_module('config/logo',$logo['image']) ?>" class="img-circle" alt="User Image">
+          <li class="user-header" style="background-color: #c24715;">
+            <img src="<?php echo $image ?>" class="img-circle" alt="User Image">
 
             <p>
-              Alexander Pierce - Web Developer
-              <small>Member since Nov. 2012</small>
+              <?php echo $user['username'] ?>
+              <small>Member sejak <?php echo date_format(date_create($user['created']),'d-m-Y') ?></small>
             </p>
           </li>
           <!-- Menu Body -->
@@ -130,7 +132,7 @@
               <a href="#" class="btn btn-default btn-flat">Profile</a>
             </div>
             <div class="pull-right">
-              <a href="#" class="btn btn-default btn-flat">Sign out</a>
+              <a href="<?php echo base_url('admin/logout') ?>" class="btn btn-default btn-flat">Log out</a>
             </div>
           </li>
         </ul>
@@ -146,7 +148,7 @@
           <li>
             <ul class="menu">
               <li>
-                <a href="#">
+                <a href="<?php echo base_url('home/member/daftar')?>">
                   <div class="pull-left">
                     <i class="fa fa-plus-circle"></i>                    
                   </div>
@@ -157,7 +159,7 @@
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="<?php echo base_url('admin/login')?>">
                   <div class="pull-left">
                     <i class="fa fa-sign-in"></i>                    
                   </div>
