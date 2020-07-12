@@ -28,4 +28,17 @@ class Lpk_model extends CI_Model
 			return $data;
 		}
 	}
+
+	public function get_lpk($id = 0)
+	{
+		return $this->db->get_where('lpk',['id'=>$id])->row_array();
+	}
+	public function get_program($id = 0)
+	{
+		return $this->db->get_where('lpk_program',['id'=>$id])->row_array();
+	}
+	public function get_program_by_lpk($id = 0)
+	{
+		return $this->db->get_where('lpk_program',['lpk_id'=>$id])->result_array();
+	}
 }

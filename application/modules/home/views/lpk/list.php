@@ -23,7 +23,7 @@ if(!empty($data['data']))
 	          			<img src="<?php echo image_module('lpk',$value['id'].'/'.$value['image']) ?>" alt="" style="object-fit: cover; width: 100%;height:150px;">
 	          			<hr>
 	          			<span class="product-description">
-	                	<a href=""><b><?php echo $value['title'] ?></b></a>
+	                	<a href="<?php echo base_url('home/lpk/detail/'.$value['id'].'/'.urlencode(str_replace(' ','-',$value['title']))) ?>"><b><?php echo $value['title'] ?></b></a>
 	              	</span>
 	          		</div>
 	          	</div>
