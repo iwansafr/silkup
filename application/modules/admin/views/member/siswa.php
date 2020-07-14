@@ -54,6 +54,7 @@ if(!empty($role_member))
 	$form->setCollapse('username',FALSE);
 
 	$form->setDelete(true);
+	$form->set_delete_jointable();
 	$form->setEdit(true);
 	$form->setEditLink('siswa_edit?id=');
 
