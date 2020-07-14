@@ -27,47 +27,7 @@
 			      	<div class="row">
 			      		<div class="col-md-3">
 			      			<?php $this->load->view('popular_lpk') ?>
-				          <div class="box box-danger">
-				            <div class="box-header with-border">
-				              <h3 class="box-title">Kursus Populer</h3>
-
-				              <div class="box-tools pull-right">
-				                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-				                </button>
-				              </div>
-				            </div>
-				            <div class="box-body">
-				              <ul class="products-list product-list-in-box">
-				                <li class="item">
-				                  <div class="product-img" style="width: 100%;text-align: center;">
-				                    <a href="javascript:void(0)" class="product-title">Kursus 1
-				                    </a>
-			                    	<span class="product-description">
-		                          Kursus tentang 1
-			                      </span>
-				                  </div>
-				                </li>
-				                <li class="item">
-													<div class="product-img" style="width: 100%;text-align: center;">
-				                    <a href="javascript:void(0)" class="product-title">Kursus 2
-				                    </a>
-			                    	<span class="product-description">
-		                          Kursus tentang 2
-			                      </span>
-				                  </div>
-				                </li>
-				                <li class="item">
-				                  <div class="product-img" style="width: 100%;text-align: center;">
-				                    <a href="javascript:void(0)" class="product-title">Kursus 3
-				                    </a>
-			                    	<span class="product-description">
-		                          Kursus tentang 3
-			                      </span>
-				                  </div>
-				                </li>
-				              </ul>
-				            </div>
-				          </div>
+				          <?php $this->load->view('popular_program') ?>
 			      		</div>
 			      		<div class="col-md-9">
 			      			<?php $this->load->view('content') ?>

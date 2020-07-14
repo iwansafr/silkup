@@ -9,6 +9,7 @@ class Silkup_model extends CI_Model
 		$this->load->model('esg_model');
 		$this->set_popular_lpk();
 		$this->set_latest_program();
+		$this->set_popular_program();
 	}
 	public function get_popular_lpk()
 	{
@@ -35,7 +36,19 @@ class Silkup_model extends CI_Model
 	}
 	public function get_popular_program()
 	{
-		
+		$data = $this->db->query('SELECT count(lpk_program_id) AS total,param FROM lpk_program_member GROUP BY lpk_program_id ORDER BY total DESC LIMIT 6')->result_array();
+		if(!empty($data))
+		{
+			return $data;
+		}
+	}
+	public function set_popular_program()
+	{
+		$data = $this->get_popular_program();
+		if(!empty($data))
+		{
+			$this->esg->set_esg('popular_program',$data);
+		}
 	}
 	public function set_latest_program()
 	{
