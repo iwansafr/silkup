@@ -64,6 +64,25 @@ class Program extends CI_Controller
 		$this->esg_model->set_nav_title('Daftar Program');
 		$id = esg_decrypt($id);
 		$program = $this->lpk_model->get_program($id);
-		$this->load->view('index',['program'=>$program]);
+		$program_member_id = 0;
+		if(!empty($program))
+		{
+			$program_member_id = $this->lpk_admin_model->register($program);
+			$program_member    = $this->lpk_admin_model->get_program_member($program_member_id);
+		}
+		$this->load->view('index',['program_member'=>$program_member,'program_member_id'=>$program_member_id]);
+	}
+	public function pembayaran($gelombang = 1, $id = '')
+	{
+		$id = esg_decrypt($id);
+		if($this->db->field_exists('param_pembayaran_'.$gelombang,'lpk_program_member'))
+		{
+			$valid = true;
+			$data = $this->db->get_where('lpk_program_member',['id'=>$id])->row_array();
+		}else{
+			$valid = false;
+			$data = [];
+		}
+		$this->load->view('index',['data'=>$data,'valid'=>$valid,'gelombang'=>$gelombang]);
 	}
 }

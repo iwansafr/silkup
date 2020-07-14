@@ -28,4 +28,33 @@ class Lpk_admin_model extends CI_Model
 			}
 		}
 	}
+	public function register($program = array())
+	{
+		if(!empty($program) && is_array($program) && !empty($_SESSION[base_url('_logged_in')]))
+		{
+			$data                   = [];
+			$user_id = $_SESSION[base_url('_logged_in')]['id'];
+			$this->db->select('id');
+			$id = $this->db->get_where('lpk_program_member',['user_id'=>$user_id,'lpk_program_id'=>$program['id']])->row_array();
+			if(empty($id))
+			{
+				$data['user_id']        = $user_id;
+				$data['lpk_program_id'] = $program['id'];
+				$data['param']          = json_encode($program);
+				$data['name']           = esg_encrypt($user_id.$program['id']);
+				$this->db->insert('lpk_program_member',$data);
+				$id = $this->db->insert_id();
+			}else{
+				$id = $id['id'];
+			}
+			return $id;
+		}
+	}
+	public function get_program_member($id = 0)
+	{
+		if(!empty($id))
+		{
+			return $this->db->get_where('lpk_program_member',['id'=>$id])->row_array();
+		}
+	}
 }

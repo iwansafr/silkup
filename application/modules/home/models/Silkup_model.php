@@ -30,7 +30,12 @@ class Silkup_model extends CI_Model
 	public function get_latest_program()
 	{
 		$this->db->order_by('id','DESC');
+		$this->db->limit(16);
 		return $this->db->get('lpk_program')->result_array();
+	}
+	public function get_popular_program()
+	{
+		
 	}
 	public function set_latest_program()
 	{

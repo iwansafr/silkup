@@ -17,6 +17,7 @@ if(check_role('member'))
 		// $form->setLabel('image_dokumentasi','Dokumentasi (upload beberapa foto dokumentasi)');
 		// $form->setAccept('image_dokumentasi','.jpg,.png,.jpeg');
 		$form->addInput('wa','text');
+
 		$form->setRequired('All');
 		$form->setFormName('data_legal_edit');
 		$form->form();
