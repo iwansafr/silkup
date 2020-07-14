@@ -260,23 +260,35 @@ CREATE TABLE `lpk_program` (
   `title` varchar(255) NOT NULL,
   `description` text NOT NULL,
   `foto` varchar(255) NOT NULL,
+  `syarat` text NOT NULL,
+  `lama_kursus` tinyint NOT NULL COMMENT 'dalam bulan',
+  `jadwal` varchar(255) NOT NULL,
+  `pembayaran_1` int NOT NULL,
+  `pembayaran_2` int NOT NULL,
+  `lain_lain` text NOT NULL,
   `lpk_id` int NOT NULL,
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `lpk_program` (`id`, `title`, `description`, `foto`, `lpk_id`, `created`) VALUES
-(1, 'Menyetir', '', '', 1, '2020-07-11 03:20:51'),
-(2, 'Bahasa Inggris', '', 'foto_Bahasa_Inggris.png', 1, '2020-07-11 03:21:06'),
-(3, 'Matematika', '', '', 1, '2020-07-11 03:21:11');
+INSERT INTO `lpk_program` (`id`, `title`, `description`, `foto`, `syarat`, `lama_kursus`, `jadwal`, `pembayaran_1`, `pembayaran_2`, `lain_lain`, `lpk_id`, `created`) VALUES
+(1, 'Menyetir', '', '', '', 0, '', 0, 0, '', 1, '2020-07-11 03:20:51'),
+(2, 'Bahasa Inggris', 'pelatihan bahasa inggris dari dasar sampai mahir dengan biaya cukup 2 juta selama 2 bulan', 'foto_Bahasa_Inggris.png', '<ol><li>ktp / kartu pelajar</li><li>kartu keluarga</li><li>domisili pati</li></ol>', 2, 'senin sampai jumat', 1000000, 1000000, 'tetap semangat never surender', 1, '2020-07-11 03:21:06'),
+(3, 'Matematika', '', '', '', 0, '', 0, 0, '', 1, '2020-07-11 03:21:11');
 
 DROP TABLE IF EXISTS `lpk_program_member`;
 CREATE TABLE `lpk_program_member` (
   `id` int NOT NULL,
   `user_id` int NOT NULL,
   `lpk_program_id` int NOT NULL,
+  `name` text NOT NULL,
+  `param_pembayaran_1` json NOT NULL,
+  `param_pembayaran_2` json NOT NULL,
   `param` json NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `lpk_program_member` (`id`, `user_id`, `lpk_program_id`, `name`, `param_pembayaran_1`, `param_pembayaran_2`, `param`) VALUES
+(1, 10, 2, '8Aan', '{\"lunas\": \"1\", \"nominal\": \"100000\", \"Nama_Bank\": \"bri\", \"atas_nama\": \"iwan safrudin\", \"Nomor_Rekening\": \"987897899\", \"bukti_transfer\": \"bukti_transfer_bri.jpg\"}', 'null', '{\"id\": \"2\", \"foto\": \"foto_Bahasa_Inggris.png\", \"title\": \"Bahasa Inggris\", \"jadwal\": \"senin sampai jumat\", \"lpk_id\": \"1\", \"syarat\": \"<ol><li>ktp / kartu pelajar</li><li>kartu keluarga</li><li>domisili pati</li></ol>\", \"created\": \"2020-07-11 03:21:06\", \"updated\": \"2020-07-14 21:48:04\", \"lain_lain\": \"tetap semangat never surender\", \"description\": \"pelatihan bahasa inggris dari dasar sampai mahir dengan biaya cukup 2 juta selama 2 bulan\", \"lama_kursus\": \"2\", \"pembayaran_1\": \"1000000\", \"pembayaran_2\": \"1000000\"}');
 
 DROP TABLE IF EXISTS `member`;
 CREATE TABLE `member` (
@@ -861,7 +873,13 @@ INSERT INTO `user_login` (`id`, `user_id`, `ip`, `browser`, `status`, `created`)
 (466, 1, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', 1, '2020-07-12 17:13:52'),
 (467, 1, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', 1, '2020-07-12 18:16:34'),
 (468, 8, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', 1, '2020-07-12 18:27:01'),
-(469, 1, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', 1, '2020-07-12 18:27:14');
+(469, 1, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', 1, '2020-07-12 18:27:14'),
+(470, 0, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', 0, '2020-07-14 20:05:58'),
+(471, 2, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', 1, '2020-07-14 20:06:00'),
+(472, 10, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', 1, '2020-07-14 20:06:15'),
+(473, 8, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', 1, '2020-07-14 21:26:01'),
+(474, 10, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', 1, '2020-07-14 22:01:34'),
+(475, 10, '::1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', 1, '2020-07-14 22:06:00');
 
 DROP TABLE IF EXISTS `user_login_failed`;
 CREATE TABLE `user_login_failed` (
@@ -891,7 +909,8 @@ INSERT INTO `user_login_failed` (`id`, `user_login_id`, `username`, `password`) 
 (17, 443, 'root', '1'),
 (18, 447, 'root', 'Dks_080308'),
 (19, 452, 'root', 'toor'),
-(20, 456, 'root', 'toor');
+(20, 456, 'root', 'toor'),
+(21, 470, 'admin', '1');
 
 DROP TABLE IF EXISTS `user_role`;
 CREATE TABLE `user_role` (
@@ -8642,7 +8661,156 @@ INSERT INTO `visitor` (`id`, `ip`, `visited`, `city`, `region`, `country`, `brow
 (7828, '::1', 'http://localhost/silkup/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-12 19:06:51'),
 (7829, '::1', 'http://localhost/silkup/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-12 19:07:15'),
 (7830, '::1', 'http://localhost/silkup/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-12 19:07:44'),
-(7831, '::1', 'http://localhost/silkup/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-12 19:11:17');
+(7831, '::1', 'http://localhost/silkup/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-12 19:11:17'),
+(7832, '::1', 'http://localhost/silkup/', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-13 19:46:06'),
+(7833, '::1', 'http://localhost/silkup/', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-13 19:48:19'),
+(7834, '::1', 'http://localhost/silkup/', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-13 19:48:21'),
+(7835, '::1', 'http://localhost/silkup/', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-13 19:51:52'),
+(7836, '::1', 'http://localhost/silkup/', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-13 19:53:00'),
+(7837, '::1', 'http://localhost/silkup/home/lpk/list', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-13 21:34:51'),
+(7838, '::1', 'http://localhost/silkup/home/lpk/list', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-13 21:35:09'),
+(7839, '::1', 'http://localhost/silkup/', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-13 21:35:23'),
+(7840, '::1', 'http://localhost/silkup/', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-13 21:36:05'),
+(7841, '::1', 'http://localhost/silkup/', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-13 21:36:10'),
+(7842, '::1', 'http://localhost/silkup/', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-13 21:36:13'),
+(7843, '::1', 'http://localhost/silkup/', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-13 21:36:17'),
+(7844, '::1', 'http://localhost/silkup/', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 19:56:22'),
+(7845, '::1', 'http://localhost/silkup/', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 19:57:20'),
+(7846, '::1', 'http://localhost/silkup/', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 20:04:00'),
+(7847, '::1', 'http://localhost/silkup/home/lpk/program_detail/2/Bahasa-Inggris', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 20:21:34'),
+(7848, '::1', 'http://localhost/silkup/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 20:21:34'),
+(7849, '::1', 'http://localhost/silkup/home/lpk/program_detail/2/Bahasa-Inggris', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:25:07'),
+(7850, '::1', 'http://localhost/silkup/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:25:07'),
+(7851, '::1', 'http://localhost/silkup/templates/AdminLTE/assets/summernote/summernote.js.map', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:27:23'),
+(7852, '::1', 'http://localhost/silkup/home/lpk/program_detail/2/Bahasa-Inggris', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:37:08'),
+(7853, '::1', 'http://localhost/silkup/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:37:09'),
+(7854, '::1', 'http://localhost/silkup/home/lpk/program_detail/2/Bahasa-Inggris', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:38:10'),
+(7855, '::1', 'http://localhost/silkup/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:38:10'),
+(7856, '::1', 'http://localhost/silkup/home/lpk/program_detail/2/Bahasa-Inggris', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:38:24'),
+(7857, '::1', 'http://localhost/silkup/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:38:24'),
+(7858, '::1', 'http://localhost/silkup/home/lpk/program_detail/2/Bahasa-Inggris', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:38:44'),
+(7859, '::1', 'http://localhost/silkup/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:38:44'),
+(7860, '::1', 'http://localhost/silkup/home/lpk/program_detail/2/Bahasa-Inggris', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:39:21'),
+(7861, '::1', 'http://localhost/silkup/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:39:22'),
+(7862, '::1', 'http://localhost/silkup/home/lpk/program_detail/2/Bahasa-Inggris', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:39:38'),
+(7863, '::1', 'http://localhost/silkup/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:39:38'),
+(7864, '::1', 'http://localhost/silkup/home/lpk/program_detail/2/Bahasa-Inggris', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:39:50'),
+(7865, '::1', 'http://localhost/silkup/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:39:50'),
+(7866, '::1', 'http://localhost/silkup/home/lpk/program_detail/2/Bahasa-Inggris', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:40:06'),
+(7867, '::1', 'http://localhost/silkup/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:40:06'),
+(7868, '::1', 'http://localhost/silkup/home/lpk/program_detail/2/Bahasa-Inggris', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:40:14'),
+(7869, '::1', 'http://localhost/silkup/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:40:14'),
+(7870, '::1', 'http://localhost/silkup/home/lpk/program_detail/2/Bahasa-Inggris', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:40:58'),
+(7871, '::1', 'http://localhost/silkup/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:40:59'),
+(7872, '::1', 'http://localhost/silkup/home/lpk/program_detail/2/Bahasa-Inggris', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:41:09'),
+(7873, '::1', 'http://localhost/silkup/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:41:10'),
+(7874, '::1', 'http://localhost/silkup/home/lpk/program_detail/2/Bahasa-Inggris', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:41:17'),
+(7875, '::1', 'http://localhost/silkup/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:41:17'),
+(7876, '::1', 'http://localhost/silkup/home/lpk/program_detail/2/Bahasa-Inggris', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:41:33'),
+(7877, '::1', 'http://localhost/silkup/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:41:34'),
+(7878, '::1', 'http://localhost/silkup/home/lpk/program_detail/2/Bahasa-Inggris', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:41:42'),
+(7879, '::1', 'http://localhost/silkup/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:41:42'),
+(7880, '::1', 'http://localhost/silkup/home/lpk/program_detail/2/Bahasa-Inggris', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:41:45'),
+(7881, '::1', 'http://localhost/silkup/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:41:46'),
+(7882, '::1', 'http://localhost/silkup/home/lpk/program_detail/2/Bahasa-Inggris', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:42:08'),
+(7883, '::1', 'http://localhost/silkup/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:42:08'),
+(7884, '::1', 'http://localhost/silkup/home/lpk/program_detail/2/Bahasa-Inggris', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:42:52'),
+(7885, '::1', 'http://localhost/silkup/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:42:52'),
+(7886, '::1', 'http://localhost/silkup/home/lpk/program_detail/2/Bahasa-Inggris', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:44:05'),
+(7887, '::1', 'http://localhost/silkup/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:44:05'),
+(7888, '::1', 'http://localhost/silkup/home/lpk/program_detail/2/Bahasa-Inggris', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:45:24'),
+(7889, '::1', 'http://localhost/silkup/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:45:24'),
+(7890, '::1', 'http://localhost/silkup/home/lpk/program_detail/2/Bahasa-Inggris', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:46:01'),
+(7891, '::1', 'http://localhost/silkup/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:46:02'),
+(7892, '::1', 'http://localhost/silkup/home/lpk/program_detail/2/Bahasa-Inggris', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:46:19'),
+(7893, '::1', 'http://localhost/silkup/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:46:19'),
+(7894, '::1', 'http://localhost/silkup/home/lpk/program_detail/2/Bahasa-Inggris', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:46:49'),
+(7895, '::1', 'http://localhost/silkup/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:46:49'),
+(7896, '::1', 'http://localhost/silkup/home/lpk/program_detail/2/Bahasa-Inggris', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:46:57'),
+(7897, '::1', 'http://localhost/silkup/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:46:57'),
+(7898, '::1', 'http://localhost/silkup/home/lpk/program_detail/2/Bahasa-Inggris', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:47:51'),
+(7899, '::1', 'http://localhost/silkup/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:47:51'),
+(7900, '::1', 'http://localhost/silkup/home/lpk/program_detail/2/Bahasa-Inggris', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:48:06'),
+(7901, '::1', 'http://localhost/silkup/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:48:06'),
+(7902, '::1', 'http://localhost/silkup/home/lpk/program_detail/2/Bahasa-Inggris', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:49:46'),
+(7903, '::1', 'http://localhost/silkup/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:49:46'),
+(7904, '::1', 'http://localhost/silkup/', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:49:57'),
+(7905, '::1', 'http://localhost/silkup/home/lpk/detail/1/Fortuna-Pati', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:50:03'),
+(7906, '::1', 'http://localhost/silkup/home/lpk/program_detail/2/Bahasa-Inggris', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:50:06'),
+(7907, '::1', 'http://localhost/silkup/home/lpk/program_detail/2/Bahasa-Inggris', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:52:06'),
+(7908, '::1', 'http://localhost/silkup/home/lpk/program_detail/2/Bahasa-Inggris', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:52:06'),
+(7909, '::1', 'http://localhost/silkup/home/lpk/program_detail/2/Bahasa-Inggris', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 21:52:40'),
+(7910, '::1', 'http://localhost/silkup/member/daftar', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 22:00:18'),
+(7911, '::1', 'http://localhost/silkup/home/lpk/program_detail/2/Bahasa-Inggris', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 22:00:24'),
+(7912, '::1', 'http://localhost/silkup/home/lpk/program_detail/2/Bahasa-Inggris', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 22:00:34'),
+(7913, '::1', 'http://localhost/silkup/home/member/daftar', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 22:00:35'),
+(7914, '::1', 'http://localhost/silkup/home/member/daftar', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 22:00:46'),
+(7915, '::1', 'http://localhost/silkup/home/lpk/program_detail/2/Bahasa-Inggris', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 22:00:49'),
+(7916, '::1', 'http://localhost/silkup/home/lpk/program_detail/2/Bahasa-Inggris', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 22:01:25'),
+(7917, '::1', 'http://localhost/silkup/home/lpk/program_detail/2/Bahasa-Inggris', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 22:01:43'),
+(7918, '::1', 'http://localhost/silkup/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 22:01:44'),
+(7919, '::1', 'http://localhost/silkup/home/lpk/program_detail/2/Bahasa-Inggris', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 22:01:45'),
+(7920, '::1', 'http://localhost/silkup/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 22:01:46'),
+(7921, '::1', 'http://localhost/silkup/', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 22:01:55'),
+(7922, '::1', 'http://localhost/silkup/home/lpk/detail/2/Fortuna-Jepara', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 22:01:58'),
+(7923, '::1', 'http://localhost/silkup/', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 22:02:03'),
+(7924, '::1', 'http://localhost/silkup/home/lpk/detail/1/Fortuna-Pati', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 22:02:05'),
+(7925, '::1', 'http://localhost/silkup/home/lpk/program_detail/2/Bahasa-Inggris', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 22:02:07'),
+(7926, '::1', 'http://localhost/silkup/home/lpk/program_detail/2/Bahasa-Inggris', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 22:03:22'),
+(7927, '::1', 'http://localhost/silkup/home/lpk/program_detail/2/Bahasa-Inggris', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 22:04:53'),
+(7928, '::1', 'http://localhost/silkup/home/lpk/program_detail/2/Bahasa-Inggris', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 22:05:02'),
+(7929, '::1', 'http://localhost/silkup/home/lpk/program_detail/2/Bahasa-Inggris', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 22:05:53'),
+(7930, '::1', 'http://localhost/silkup/home/lpk/program_detail/2/Bahasa-Inggris', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 22:06:01'),
+(7931, '::1', 'http://localhost/silkup/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 22:06:01'),
+(7932, '::1', 'http://localhost/silkup/home/lpk/program_detail/2/Bahasa-Inggris', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 23:20:17'),
+(7933, '::1', 'http://localhost/silkup/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 23:20:18'),
+(7934, '::1', 'http://localhost/silkup/home/lpk/program_detail/2/Bahasa-Inggris', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 23:21:38'),
+(7935, '::1', 'http://localhost/silkup/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 23:21:38'),
+(7936, '::1', 'http://localhost/silkup/home/lpk/program_detail/2/Bahasa-Inggris', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 23:33:02'),
+(7937, '::1', 'http://localhost/silkup/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 23:33:03'),
+(7938, '::1', 'http://localhost/silkup/', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 23:34:50'),
+(7939, '::1', 'http://localhost/silkup/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 23:34:50'),
+(7940, '::1', 'http://localhost/silkup/', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 23:37:26'),
+(7941, '::1', 'http://localhost/silkup/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 23:37:26'),
+(7942, '::1', 'http://localhost/silkup/', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 23:38:27'),
+(7943, '::1', 'http://localhost/silkup/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 23:38:27'),
+(7944, '::1', 'http://localhost/silkup/', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 23:39:25'),
+(7945, '::1', 'http://localhost/silkup/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 23:39:26'),
+(7946, '::1', 'http://localhost/silkup/', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 23:41:26'),
+(7947, '::1', 'http://localhost/silkup/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 23:41:26'),
+(7948, '::1', 'http://localhost/silkup/', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 23:41:46'),
+(7949, '::1', 'http://localhost/silkup/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 23:41:46'),
+(7950, '::1', 'http://localhost/silkup/', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 23:42:08'),
+(7951, '::1', 'http://localhost/silkup/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 23:42:09'),
+(7952, '::1', 'http://localhost/silkup/', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 23:42:21'),
+(7953, '::1', 'http://localhost/silkup/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 23:42:21'),
+(7954, '::1', 'http://localhost/silkup/', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 23:42:42'),
+(7955, '::1', 'http://localhost/silkup/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 23:42:42'),
+(7956, '::1', 'http://localhost/silkup/', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 23:42:54'),
+(7957, '::1', 'http://localhost/silkup/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 23:42:55'),
+(7958, '::1', 'http://localhost/silkup/', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 23:43:16'),
+(7959, '::1', 'http://localhost/silkup/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 23:43:16'),
+(7960, '::1', 'http://localhost/silkup/home/lpk/list', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 23:43:56'),
+(7961, '::1', 'http://localhost/silkup/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 23:43:56'),
+(7962, '::1', 'http://localhost/silkup/home/lpk/detail/3/lpk-fortuna', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 23:43:59'),
+(7963, '::1', 'http://localhost/silkup/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 23:43:59'),
+(7964, '::1', 'http://localhost/silkup/home/lpk/list', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 23:44:15'),
+(7965, '::1', 'http://localhost/silkup/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 23:44:16'),
+(7966, '::1', 'http://localhost/silkup/home/lpk/detail/2/Fortuna-Jepara', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 23:44:19'),
+(7967, '::1', 'http://localhost/silkup/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 23:44:20'),
+(7968, '::1', 'http://localhost/silkup/', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 23:44:35'),
+(7969, '::1', 'http://localhost/silkup/', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 23:44:35'),
+(7970, '::1', 'http://localhost/silkup/h', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 23:44:35'),
+(7971, '::1', 'http://localhost/silkup/', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 23:44:36'),
+(7972, '::1', 'http://localhost/silkup/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 23:44:36'),
+(7973, '::1', 'http://localhost/silkup/home/lpk/detail/1/Fortuna-Pati', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 23:45:50'),
+(7974, '::1', 'http://localhost/silkup/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 23:45:51'),
+(7975, '::1', 'http://localhost/silkup/', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 23:46:03'),
+(7976, '::1', 'http://localhost/silkup/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 23:46:04'),
+(7977, '::1', 'http://localhost/silkup/', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 23:46:24'),
+(7978, '::1', 'http://localhost/silkup/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 23:46:25'),
+(7979, '::1', 'http://localhost/silkup/home/lpk/program_detail/2/Bahasa%20Inggris', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 23:46:28'),
+(7980, '::1', 'http://localhost/silkup/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36', '2020-07-14 23:46:28');
 
 
 ALTER TABLE `admin_menu`
@@ -8769,7 +8937,7 @@ ALTER TABLE `lpk_program`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 ALTER TABLE `lpk_program_member`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 ALTER TABLE `member`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
@@ -8802,16 +8970,16 @@ ALTER TABLE `user`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 ALTER TABLE `user_login`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=470;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=476;
 
 ALTER TABLE `user_login_failed`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 ALTER TABLE `user_role`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 ALTER TABLE `visitor`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7832;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7981;
 
 
 ALTER TABLE `trash`
