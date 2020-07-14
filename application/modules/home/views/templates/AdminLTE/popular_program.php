@@ -14,7 +14,7 @@
 	      	<?php $data = json_decode($value['param'],1) ?>
 		      <li class="item">
 		        <div class="product-img" style="width: 100%;text-align: center;">
-		          <a href="javascript:void(0)" class="product-title"><?php echo $data['title'] ?>
+		          <a href="<?php echo base_url('home/lpk/program_detail/'.$data['id'].'/'.$data['title']) ?>" class="product-title"><?php echo $data['title'] ?>
 		          </a>
 		          <span class="label label-warning pull-right"><?php echo $value['total'].' member'; ?></span></a>
 		        	<span class="product-description">
