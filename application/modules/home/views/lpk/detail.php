@@ -20,7 +20,9 @@ if(!empty($data))
 					<hr>
 					<?php echo $data['description'] ?>
 					<hr>
-					<center><a href="<?php echo base_url('home/member/daftar/'.$data['id']) ?>" class="btn btn-success btn-lg"><i class="fa fa-user-plus"></i> Daftar</a></center>
+					<?php if (check_role('siswa') || empty($_SESSION[base_url('_logged_in')])): ?>
+						<center><a href="<?php echo base_url('home/member/daftar/'.$data['id']) ?>" class="btn btn-success btn-lg"><i class="fa fa-user-plus"></i> Daftar</a></center>
+					<?php endif ?>
 	      </div>
 	    </div>
 	  </div>
