@@ -4,7 +4,7 @@ if(!empty($role_member))
 {
 	$this->zea->init('param');
 
-	$this->zea->setTable('member');
+	$this->zea->setTable('user_member');
 	$this->zea->setId($id);
 	$name = !empty($name) ? $name : uniqid();
 	$this->zea->setParamName($name);

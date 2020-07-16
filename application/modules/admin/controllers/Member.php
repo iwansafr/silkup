@@ -29,7 +29,7 @@ class Member extends CI_Controller
 	public function edit()
 	{
 		$id = !empty($_GET['id']) ? intval($_GET['id']) : 0;
-		$name = $this->db->query('SELECT name FROM member WHERE id = ? ',$id)->row_array();
+		$name = $this->db->query('SELECT name FROM user_member WHERE id = ? ',$id)->row_array();
 		$name = !empty($name['name']) ? $name['name'] : '';
 
 		$role_member = $this->member_model->member_role('member');
@@ -61,7 +61,7 @@ class Member extends CI_Controller
 	public function siswa_edit()
 	{
 		$id = !empty($_GET['id']) ? intval($_GET['id']) : 0;
-		$name = $this->db->query('SELECT name FROM member WHERE id = ? ',$id)->row_array();
+		$name = $this->db->query('SELECT name FROM user_member WHERE id = ? ',$id)->row_array();
 		$name = !empty($name['name']) ? $name['name'] : '';
 
 		$role_member = $this->member_model->member_role('siswa');

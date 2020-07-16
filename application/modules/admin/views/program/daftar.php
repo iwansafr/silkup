@@ -38,3 +38,7 @@ if(!empty($program))
 	</div>
 	<?php
 }
+if (empty($lpk))
+{
+	msg('Maaf Anda belum terdaftar dalam LPK silahkan daftar ke salah satu LPK yg tersedia <a href="'.base_url('home/lpk/list').'" class="btn btn-sm btn-primary"><i class="fa fa-plus"></i> Daftar</a> ','danger');
+}

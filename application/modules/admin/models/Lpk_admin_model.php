@@ -6,7 +6,7 @@ class Lpk_admin_model extends CI_Model
 	{
 		if(!empty($_SESSION))
 		{
-			$lpk = $this->db->query('SELECT param->>"$.lpk_id" AS id FROM member WHERE user_id = ?',$_SESSION[base_url().'_logged_in']['id'])->row_array();
+			$lpk = $this->db->query('SELECT param->>"$.lpk_id" AS id FROM user_member WHERE user_id = ?',$_SESSION[base_url().'_logged_in']['id'])->row_array();
 			$lpk_id = !empty($lpk['id']) ? $lpk['id'] : 0;
 			if(!empty($lpk_id))
 			{
@@ -18,7 +18,7 @@ class Lpk_admin_model extends CI_Model
 	{
 		if(!empty($_SESSION))
 		{
-			$lpk = $this->db->query('SELECT param->>"$.lpk_id" AS id FROM member WHERE user_id = ?',$_SESSION[base_url().'_logged_in']['id'])->row_array();
+			$lpk = $this->db->query('SELECT param->>"$.lpk_id" AS id FROM user_member WHERE user_id = ?',$_SESSION[base_url().'_logged_in']['id'])->row_array();
 			$lpk_id = !empty($lpk['id']) ? $lpk['id'] : 0;
 			if(!empty($lpk_id))
 			{

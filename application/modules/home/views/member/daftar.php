@@ -3,7 +3,7 @@ if(!empty($role_siswa) && ((!empty($lpk['id']) && !empty($lpk['data'])) || (empt
 {
 	$this->zea->init('param');
 
-	$this->zea->setTable('member');
+	$this->zea->setTable('user_member');
 	if (!empty($lpk['data']))
 	{
 		$this->zea->setHeading('Form Pendaftaran LPK '.$lpk['data']['title']);	

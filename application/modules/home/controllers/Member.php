@@ -28,13 +28,13 @@ class Member extends CI_Controller
 		$id = 0;
 		if(!empty($_SESSION[base_url('_logged_in')]))
 		{
-			$id = $this->db->query('SELECT id FROM member WHERE user_id = ?',$_SESSION[base_url('_logged_in')]['id'])->row_array();
+			$id = $this->db->query('SELECT id FROM user_member WHERE user_id = ?',$_SESSION[base_url('_logged_in')]['id'])->row_array();
 			if(!empty($id['id']))
 			{
 				$id = $id['id'];
 			}
 		}
-		$name = $this->db->query('SELECT name FROM member WHERE id = ? ',$id)->row_array();
+		$name = $this->db->query('SELECT name FROM user_member WHERE id = ? ',$id)->row_array();
 		$name = !empty($name['name']) ? $name['name'] : '';
 		$lpk = $this->lpk_model->get_lpk($lpk_id);
 		$role_siswa = $this->member_model->member_role('siswa');
@@ -46,13 +46,13 @@ class Member extends CI_Controller
 		$id = 0;
 		if(!empty($_SESSION[base_url('_logged_in')]))
 		{
-			$id = $this->db->query('SELECT id FROM member WHERE user_id = ?',$_SESSION[base_url('_logged_in')]['id'])->row_array();
+			$id = $this->db->query('SELECT id FROM user_member WHERE user_id = ?',$_SESSION[base_url('_logged_in')]['id'])->row_array();
 			if(!empty($id['id']))
 			{
 				$id = $id['id'];
 			}
 		}
-		$data = $this->db->query('SELECT * FROM member WHERE id = ? ',$id)->row_array();
+		$data = $this->db->query('SELECT * FROM user_member WHERE id = ? ',$id)->row_array();
 		$this->load->view('index',['data'=>$data,'id'=>$id,'kelamin'=>['1'=>'Laki-laki','2'=>'Perempuan'],'status'=>$this->member_model->member_role('siswa')]);
 	}
 }

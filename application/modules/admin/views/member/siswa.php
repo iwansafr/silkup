@@ -11,21 +11,21 @@ if(!empty($role_member))
 		$id = $this->member_model->get_lpk_id();
 	}
 
-	$form->setTable('member');
+	$form->setTable('user_member');
 	$form->search();
-	$form->join('user','ON(member.user_id = user.id)',
-		'member.id, member.name, member.param->>"$.nama" AS nama,
-		 member.param->>"$.alamat" AS alamat,
+	$form->join('user','ON(user_member.user_id = user.id)',
+		'user_member.id, user_member.name, user_member.param->>"$.nama" AS nama,
+		 user_member.param->>"$.alamat" AS alamat,
 		 user.username,
-		 member.param->>"$.email" AS email,
-		 member.param->>"$.user_role_id" AS user_role_id
+		 user_member.param->>"$.email" AS email,
+		 user_member.param->>"$.user_role_id" AS user_role_id
 		 ');
 	$where = '';
 	if(!empty($id))
 	{
-		$where = ' AND member.param->>"$.lpk_id" = '.$id;
+		$where = ' AND user_member.param->>"$.lpk_id" = '.$id;
 	}
-	$form->setWhere('member.param->>"$.user_role_id" = '.$role_member['id'].' '.$where);
+	$form->setWhere('user_member.param->>"$.user_role_id" = '.$role_member['id'].' '.$where);
 	$form->setParamName(uniqid());
 	$form->param_field = 'param';
 	$form->addInput('id','plaintext');
