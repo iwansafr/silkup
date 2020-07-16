@@ -52,7 +52,10 @@ if(!empty($role_siswa) && ((!empty($lpk['id']) && !empty($lpk['data'])) || (empt
 	$this->zea->setEncrypt(['password']);
 	$this->zea->setUnique(['username'],'{value} sudah terdaftar silahkan pilih username lain');
 	$this->zea->setRequired(['nama','username','password','email','no_wa']);
-
+	if(!empty($this->zea->getParam()['param']))
+	{
+		?><a href="<?php echo base_url('home/member/cetak') ?>" class="btn btn-sm btn-primary pull-right"><i class="fa fa-print"></i> Print</a><?php
+	}
 	$this->zea->form();
 }else{
 	msg('mohon maaf form siswa tidak ditemukan','danger');

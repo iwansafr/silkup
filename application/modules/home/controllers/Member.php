@@ -41,4 +41,18 @@ class Member extends CI_Controller
 
 		$this->load->view('index',['name'=>$name,'id'=>$id,'role_siswa'=>$role_siswa,'lpk'=>['id'=>$lpk_id,'data'=>$lpk]]);
 	}
+	public function cetak()
+	{
+		$id = 0;
+		if(!empty($_SESSION[base_url('_logged_in')]))
+		{
+			$id = $this->db->query('SELECT id FROM member WHERE user_id = ?',$_SESSION[base_url('_logged_in')]['id'])->row_array();
+			if(!empty($id['id']))
+			{
+				$id = $id['id'];
+			}
+		}
+		$data = $this->db->query('SELECT * FROM member WHERE id = ? ',$id)->row_array();
+		$this->load->view('index',['data'=>$data,'id'=>$id,'kelamin'=>['1'=>'Laki-laki','2'=>'Perempuan'],'status'=>$this->member_model->member_role('siswa')]);
+	}
 }

@@ -2,7 +2,7 @@
 
 if(!empty($field))
 {
-	if($this->init == 'edit')
+	if($this->init == 'edit' || $this->init == 'param')
 	{
 		$data_value = $data[$field];
 
@@ -22,7 +22,8 @@ if(!empty($field))
 		{
 			$image_src = image_module($this->image[$field]['module'], $dvalue['id'].'/'.$data_value);
 		}else{
-			$image_src = image_module($this->image[$field]['module'], $data['id'].'/'.$data_value);
+			$index_field = $this->init == 'edit' ? $data['id'] : $data['name'];
+			$image_src = image_module($this->image[$field]['module'], $index_field.'/'.$data_value);
 		}
 	}
 	if(!empty($data_value))

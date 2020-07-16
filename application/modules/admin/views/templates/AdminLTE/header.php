@@ -93,13 +93,13 @@ $message = $this->esg->get_esg('message');
             <li class="user-body">
               <div class="row">
                 <div class="col-xs-4 text-center">
-                  <a href="#">Followers</a>
+                  <a href="#" class="btn btn-sm btn-default">Program</a>
                 </div>
                 <div class="col-xs-4 text-center">
-                  <a href="#">Sales</a>
+                  <a href="#" class="btn btn-sm btn-default">Tagihan</a>
                 </div>
                 <div class="col-xs-4 text-center">
-                  <a href="#">Friends</a>
+                  <a href="<?php echo base_url('home/member/daftar') ?>" class="btn btn-sm btn-default"><i class="fa fa-user"></i> Biodata</a>
                 </div>
               </div>
               <!-- /.row -->
