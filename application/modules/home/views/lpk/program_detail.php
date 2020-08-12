@@ -75,15 +75,15 @@ if(!empty($data))
 						</tr>
 						<tr>
 							<td>Nama Bank</td>
-							<td>: <?php echo $lpk['bank_rek'] ?></td>
+							<td>: <?php echo !empty($lpk['bank_rek']) ? $lpk['bank_rek'] : '-'; ?></td>
 						</tr>
 						<tr>
 							<td>A/N</td>
-							<td>: <?php echo $lpk['nama_rek'] ?></td>
+							<td>: <?php echo !empty($lpk['nama_rek']) ? $lpk['nama_rek'] : '-'; ?></td>
 						</tr>
 						<tr>
 							<td>No Rekening</td>
-							<td>: <?php echo $lpk['no_rek'] ?></td>
+							<td>: <?php echo !empty($lpk['no_rek']) ? $lpk['no_rek'] : '-'; ?></td>
 						</tr>
 					</table>
 				</div>
@@ -109,7 +109,7 @@ if(!empty($data))
 		  		<a href="<?php echo base_url('admin/login/?redirect_to=').base_url('home/lpk/program_detail/'.$data['id'].'/'.urlencode(str_replace(' ','-',$data['title']))) ?>" class="btn btn-success btn-lg"><i class="fa fa-sign-in"></i> Login</a>
 		  	<?php endif ?>
 	  	<?php endif ?>
-	  	<a href="https://wa.me/<?php echo $lpk['wa'];?>" class="btn btn-lg btn-success"><i class="fa fa-whatsapp"></i> Order Via WA</a>
+	  	<a href="https://wa.me/<?php echo !empty($lpk['wa']) ? $lpk['wa'] : '';?>" class="btn btn-lg btn-success"><i class="fa fa-whatsapp"></i> Order Via WA</a>
 	  </div>
 	</div>
 	<?php
