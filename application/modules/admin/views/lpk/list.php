@@ -18,6 +18,8 @@ if(is_admin() || is_root())
 	$form->addInput('title','plaintext');
 	$form->addInput('image','thumbnail');
 	$form->addInput('description','plaintext');
+	$form->addInput('longitude','plaintext');
+	$form->addInput('latitude','plaintext');
 
 	$form->setRequired('All');
 	$form->setUrl('admin/lpk/clear_list');

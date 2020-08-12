@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Lpk extends CI_Controller
+class Instruktur extends CI_Controller
 {
 	public function __construct()
 	{
@@ -8,7 +8,6 @@ class Lpk extends CI_Controller
 		$this->db->cache_off();
 		$this->load->model('esg_model');
 		$this->load->model('admin_model');
-		$this->load->model('lpk_admin_model');
 		$this->load->library('esg');
 		$this->load->library('ZEA/zea');
 		$this->esg_model->init();
@@ -29,13 +28,6 @@ class Lpk extends CI_Controller
 	}
 	public function edit()
 	{
-		$this->esg->add_js(base_url('assets/lpk/script.js'));
 		$this->load->view('index');
-	}
-	public function data_legal()
-	{
-		$lpk = $this->lpk_admin_model->my_lpk();
-		$id = $this->lpk_admin_model->get_doc_id();
-		$this->load->view('index',['lpk'=>$lpk,'id'=>$id]);
 	}
 }
