@@ -8,6 +8,8 @@ if(check_role('member'))
 		$form->setHeading('Lengkapi data legal '.$lpk['title']);
 		$form->setTable('lpk_data');
 		$form->setParamName(esg_encrypt($lpk['id']));
+		$form->addInput('lpk_id','static');
+		$form->setValue('lpk_id',$lpk['id']);
 		$form->addInput('alamat','textarea');
 		$form->addInput('kontak','text');
 		$form->setLabel('kontak','kontak yg bisa dihubungi');
@@ -17,6 +19,12 @@ if(check_role('member'))
 		// $form->setLabel('image_dokumentasi','Dokumentasi (upload beberapa foto dokumentasi)');
 		// $form->setAccept('image_dokumentasi','.jpg,.png,.jpeg');
 		$form->addInput('wa','text');
+		$form->addInput('no_rek','text');
+		$form->setLabel('no_rek','Nomor Rekening');
+		$form->addInput('nama_rek','text');
+		$form->setLabel('nama_rek','Rekening Atas Nama');
+		$form->addInput('bank_rek','text');
+		$form->setLabel('bank_rek','Nama Bank');
 
 		$form->setRequired('All');
 		$form->setFormName('data_legal_edit');

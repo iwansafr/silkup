@@ -24,5 +24,8 @@ $form->setType('tgl_lahir','date');
 $form->addInput('alamat','textarea');
 $form->addInput('jk','dropdown');
 $form->setOptions('jk',['1'=>'Laki-laki','2'=>'Perempuan']);
+$form->setLabel('jk','Jenis Kelamin');
+$form->addInput('hp','text');
+$form->setRequired(['nama']);
 
 $form->form();

@@ -26,7 +26,14 @@ class Lpk extends CI_Controller
 	public function program_detail($id = 0)
 	{
 		$this->home_model->home();
-		$this->load->view('index',['data'=>$this->lpk_model->get_program($id)]);
+		$data = $this->lpk_model->get_program($id);
+		$lpk = [];
+		if(!empty($data))
+		{
+			$lpk = $this->db->query('SELECT value FROM lpk_data WHERE value->>"$.lpk_id" = ?',$data['lpk_id'])->row_array();
+			$lpk = !empty($lpk) ? json_decode($lpk['value'],1) : [];
+		}
+		$this->load->view('index',['data'=>$data,'lpk'=>$lpk]);
 	}
 
 	public function e()

@@ -24,7 +24,7 @@ class Instruktur extends CI_Controller
 
 	public function clear_list()
 	{
-		$this->load->view('lpk/list');
+		$this->load->view('instruktur/list');
 	}
 	public function edit()
 	{
