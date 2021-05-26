@@ -13,7 +13,7 @@ class Silkup_model extends CI_Model
 	}
 	public function get_popular_lpk()
 	{
-		// $this->db->query("SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''))");
+		$this->db->query("SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''))");
 		$data = $this->db->query('SELECT param->>"$.lpk_id" AS lpk_id,count(param->>"$.lpk_id") AS total,lpk.* FROM user_member INNER JOIN lpk ON(lpk.id=param->>"$.lpk_id") WHERE param->>"$.lpk_id" > 0 GROUP BY param->>"$.lpk_id" ORDER BY total DESC LIMIT 6')->result_array();
 		if(!empty($data))
 		{
