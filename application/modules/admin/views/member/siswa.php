@@ -14,18 +14,18 @@ if(!empty($role_member))
 	$form->setTable('user_member');
 	$form->search();
 	$form->join('user','ON(user_member.user_id = user.id)',
-		'user_member.id, user_member.name, user_member.param->>"$.nama" AS nama,
-		 user_member.param->>"$.alamat" AS alamat,
+		'user_member.id, user_member.name, JSON_EXTRACT(user_member.param,"$.nama") AS nama,
+		 JSON_EXTRACT(user_member.param,"$.alamat") AS alamat,
 		 user.username,
-		 user_member.param->>"$.email" AS email,
-		 user_member.param->>"$.user_role_id" AS user_role_id
+		 JSON_EXTRACT(user_member.param,"$.email") AS email,
+		 JSON_EXTRACT(user_member.param,"$.user_role_id") AS user_role_id
 		 ');
 	$where = '';
 	if(!empty($id))
 	{
-		$where = ' AND user_member.param->>"$.lpk_id" = '.$id;
+		$where = ' AND JSON_EXTRACT(user_member.param,"$.lpk_id") = '.$id;
 	}
-	$form->setWhere('user_member.param->>"$.user_role_id" = '.$role_member['id'].' '.$where);
+	$form->setWhere('JSON_EXTRACT(user_member.param,"$.user_role_id") = '.$role_member['id'].' '.$where);
 	$form->setParamName(uniqid());
 	$form->param_field = 'param';
 	$form->addInput('id','plaintext');

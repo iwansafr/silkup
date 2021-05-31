@@ -7,14 +7,14 @@ if(!empty($role_member))
 	$form->setTable('member');
 	$form->search();
 	$form->join('user','ON(member.user_id = user.id)',
-		'member.id, member.name, member.param->>"$.nama" AS nama,
-		 member.param->>"$.lpk_id" AS lpk,
-		 member.param->>"$.alamat" AS alamat,
+		'member.id, member.name, JSON_EXTRACT(member.param,"$.nama") AS nama,
+		 JSON_EXTRACT(member.param,"$.lpk_id") AS lpk,
+		 JSON_EXTRACT(member.param,"$.alamat") AS alamat,
 		 user.username,
-		 member.param->>"$.email" AS email,
-		 member.param->>"$.user_role_id" AS user_role_id
+		 JSON_EXTRACT(member.param,"$.email") AS email,
+		 JSON_EXTRACT(member.param,"$.user_role_id") AS user_role_id
 		 ');
-	$form->setWhere('member.param->>"$.user_role_id" = '.$role_member['id']);
+	$form->setWhere('JSON_EXTRACT(member.param,"$.user_role_id") = '.$role_member['id']);
 	$form->setParamName(uniqid());
 	$form->param_field = 'param';
 	$form->addInput('id','plaintext');

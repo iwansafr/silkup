@@ -19,7 +19,7 @@ if($is_member)
 
 	if($is_member)
 	{
-		$user_detail = $this->db->query('SELECT param FROM user_member WHERE user_member.param->>"$.username" = ?',$_SESSION[base_url('_logged_in')]['username'])->row_array();
+		$user_detail = $this->db->query('SELECT param FROM user_member WHERE JSON_EXTRACT(user_member.param,"$.username") = ?',$_SESSION[base_url('_logged_in')]['username'])->row_array();
 		if(!empty($user_detail))
 		{
 			$user_detail = json_decode($user_detail['param'],1);

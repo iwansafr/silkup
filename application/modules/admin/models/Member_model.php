@@ -14,7 +14,7 @@ class Member_model extends CI_Model
 	{
 		if(check_role('member'))
 		{
-			$lpk = $this->db->query('SELECT user_member.param->>"$.lpk_id" AS id FROM user_member WHERE user_id = ?',$_SESSION[base_url().'_logged_in']['id'])->row_array();
+			$lpk = $this->db->query('SELECT JSON_EXTRACT(user_member.param,"$.lpk_id") AS id FROM user_member WHERE user_id = ?',$_SESSION[base_url().'_logged_in']['id'])->row_array();
 			if(!empty($lpk['id']))
 			{
 				return $lpk['id'];
