@@ -62,7 +62,7 @@
 	    </div>
 	  </footer>
 	</div>
-	<?php $this->load->view('js') ?>
+	<?php $this->load->view('home/templates/AdminLTE/js') ?>
 	<?php $this->load->view('script') ?>
 </body>
 </html>
