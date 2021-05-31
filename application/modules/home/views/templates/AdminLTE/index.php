@@ -6,13 +6,13 @@
 <body class="hold-transition skin-blue layout-top-nav">
 	<div class="wrapper">
 	  <header class="main-header">
-	    <?php $this->load->view('navbar') ?>
+	    <?php $this->load->view('home/templates/AdminLTE/navbar') ?>
 	  </header>
 	  <div class="content-wrapper">
 	    <div class="container">
 	    	<?php if (!empty($mod)): ?>
 	    		<?php if ($mod['content'] == 'home/index'): ?>
-			      <?php $this->load->view('content_slider') ?>
+			      <?php $this->load->view('home/templates/AdminLTE/content_slider') ?>
 			      <section class="content-header">
 			        <h1>
 			          <?php echo !empty($navigation['array'][1]) ? $navigation['array'][1]:'' ?>
@@ -26,11 +26,11 @@
 			      <section class="content">
 			      	<div class="row">
 			      		<div class="col-md-3">
-			      			<?php $this->load->view('popular_lpk') ?>
-				          <?php $this->load->view('popular_program') ?>
+			      			<?php $this->load->view('home/templates/AdminLTE/popular_lpk') ?>
+				          <?php $this->load->view('home/templates/AdminLTE/popular_program') ?>
 			      		</div>
 			      		<div class="col-md-9">
-			      			<?php $this->load->view('content') ?>
+			      			<?php $this->load->view('home/templates/AdminLTE/content') ?>
 			      		</div>
 			      	</div>
 			      </section>
