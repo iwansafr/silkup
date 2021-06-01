@@ -30,7 +30,7 @@ class Lpk extends CI_Controller
 		$lpk = [];
 		if(!empty($data))
 		{
-			$lpk = $this->db->query('SELECT value FROM lpk_data WHERE value->>"$.lpk_id" = ?',$data['lpk_id'])->row_array();
+			$lpk = $this->db->query('SELECT value FROM lpk_data WHERE JSON_EXTRACT(value,"$.lpk_id") = ?',$data['lpk_id'])->row_array();
 			$lpk = !empty($lpk) ? json_decode($lpk['value'],1) : [];
 		}
 		$this->load->view('index',['data'=>$data,'lpk'=>$lpk]);

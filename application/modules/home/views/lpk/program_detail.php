@@ -91,7 +91,7 @@ if(!empty($data))
 			<?php if (!empty($data['lain_lain'])): ?>
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						Keternagan Lain-lain
+						Keterangan Lain-lain
 					</div>
 					<div class="panel-body">
 						<?php echo $data['lain_lain']; ?>
