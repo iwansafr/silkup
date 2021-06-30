@@ -4,7 +4,7 @@ if(!empty($role_member))
 	$form = new zea();
 	$form->init('roll');
 
-	$form->setTable('member');
+	$form->setTable('`member`');
 	$form->search();
 	$form->join('user','ON(member.user_id = user.id)',
 		'member.id, member.name, JSON_EXTRACT(member.param,"$.nama") AS nama,
