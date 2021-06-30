@@ -17,7 +17,7 @@ class Member_model extends CI_Model
 			$lpk = $this->db->query('SELECT JSON_EXTRACT(user_member.param,"$.lpk_id") AS id FROM user_member WHERE user_id = ?',$_SESSION[base_url().'_logged_in']['id'])->row_array();
 			if(!empty($lpk['id']))
 			{
-				return $lpk['id'];
+				return str_replace('"','',$lpk['id']);
 			}
 		}
 		return 0;
