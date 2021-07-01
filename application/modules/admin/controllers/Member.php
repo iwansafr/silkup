@@ -67,4 +67,13 @@ class Member extends CI_Controller
 		$role_member = $this->member_model->member_role('siswa');
 		$this->load->view('index',['name'=>$name,'id'=>$id,'role_member'=>$role_member]);
 	}
+	public function detail($kode = '')
+	{
+		$data = $this->db->get_where('user_member',['name'=>$kode])->row_array();
+		$program = $this->db->get_where('lpk_program_member',['user_id'=>@intval($data['user_id'])])->result_array();
+		$this->load->view('index', [
+			'data'=>$data,
+			'program' => $program
+		]);
+	}
 }

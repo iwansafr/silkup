@@ -23,9 +23,9 @@ if(!empty($role_member))
 	$where = '';
 	if(!empty($id))
 	{
-		$where = ' AND JSON_EXTRACT(user_member.param,"$.lpk_id") = '.$id;
+		$where = ' AND JSON_EXTRACT(user_member.param,"$.lpk_id") = "'.$id.'"';
 	}
-	$form->setWhere('JSON_EXTRACT(user_member.param,"$.user_role_id") = '.$role_member['id'].' '.$where);
+	$form->setWhere('JSON_EXTRACT(user_member.param,"$.user_role_id") = "'.$role_member['id'].'" '.$where);
 	$form->setParamName(uniqid());
 	$form->param_field = 'param';
 	$form->addInput('id','plaintext');
