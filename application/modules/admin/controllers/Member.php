@@ -70,7 +70,6 @@ class Member extends CI_Controller
 	public function detail($kode = '')
 	{
 		$data = $this->db->get_where('user_member',['name'=>$kode])->row_array();
-		pr($this->db->last_query());
 		$program = $this->db->get_where('lpk_program_member',['user_id'=>@intval($data['user_id'])])->result_array();
 		$this->load->view('index', [
 			'data'=>$data,
