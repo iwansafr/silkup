@@ -46,7 +46,7 @@
       <?php
     }
     ?>
-
+    <a href="<?php echo base_url() ?>"><i class="fa fa-home"></i> Ke Beranda</a>
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body" style="background: #929090; color: white;">

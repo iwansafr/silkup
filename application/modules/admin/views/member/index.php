@@ -55,6 +55,7 @@ if(!empty($role_member))
 	$form->setUrl('admin/member/clear_list');
 
 	$form->form();
+	pr($form->getData());
 }else{
 	msg('mohon maaf group member tidak tersedia','danger');
 }

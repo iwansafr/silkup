@@ -1,14 +1,32 @@
+-- phpMyAdmin SQL Dump
+-- version 5.1.0
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Waktu pembuatan: 30 Jun 2021 pada 14.08
+-- Versi server: 10.4.19-MariaDB
+-- Versi PHP: 8.0.6
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
 
+--
+-- Database: `silkup`
+--
 
-DROP TABLE IF EXISTS `admin_menu`;
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `admin_menu`
+--
+
 CREATE TABLE `admin_menu` (
   `id` int(11) NOT NULL,
   `par_id` int(11) DEFAULT NULL,
@@ -20,6 +38,10 @@ CREATE TABLE `admin_menu` (
   `created` timestamp NULL DEFAULT current_timestamp(),
   `updated` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data untuk tabel `admin_menu`
+--
 
 INSERT INTO `admin_menu` (`id`, `par_id`, `user_role_ids`, `title`, `icon`, `link`, `sort_order`, `created`, `updated`) VALUES
 (1, 0, ',1,2,3,4,', 'Dashboard', 'fa fa-tachometer-alt', '/', 1, '2019-03-30 03:05:59', '2020-07-14 16:53:26'),
@@ -75,7 +97,12 @@ INSERT INTO `admin_menu` (`id`, `par_id`, `user_role_ids`, `title`, `icon`, `lin
 (52, 51, ',3,', 'Tambah Instruktur', 'fa fa-plus', '/instruktur/edit', 1, '2020-08-12 21:38:31', '2020-08-12 21:38:31'),
 (53, 51, ',1,2,3,', 'Data Instruktur', 'fa fa-list', '/instruktur/list', 1, '2020-08-12 21:38:47', '2020-08-12 21:38:47');
 
-DROP TABLE IF EXISTS `bank_account`;
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `bank_account`
+--
+
 CREATE TABLE `bank_account` (
   `id` int(10) UNSIGNED NOT NULL,
   `bank_name` varchar(255) NOT NULL,
@@ -86,22 +113,40 @@ CREATE TABLE `bank_account` (
   `updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data untuk tabel `bank_account`
+--
+
 INSERT INTO `bank_account` (`id`, `bank_name`, `person_name`, `icon`, `bank_number`, `created`, `updated`) VALUES
 (1, 'BCA', 'Iwan Safrudin', 'icon_BCA.png', '0312609779', '2019-04-14 16:18:57', '2020-07-14 16:53:26'),
 (2, 'BNI', 'Iwan Safrudin', 'icon_BNI.png', '0813920638', '2019-04-14 16:19:55', '2020-07-14 16:53:26'),
 (3, 'BRI', 'JONI', '', '032453445', '2021-06-29 19:25:26', '2021-06-29 19:25:26');
 
-DROP TABLE IF EXISTS `coba`;
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `coba`
+--
+
 CREATE TABLE `coba` (
   `id` int(11) NOT NULL,
   `title` varchar(255) COLLATE utf8_swedish_ci NOT NULL,
   `param` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`param`))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
 
+--
+-- Dumping data untuk tabel `coba`
+--
+
 INSERT INTO `coba` (`id`, `title`, `param`) VALUES
 (1, 'test', '{\"nama\": \"zea\", \"name\": \"5f0ac1d67e965\", \"email\": \"zea@gmail.com\", \"no_wa\": \"6281290335332\", \"alamat\": \"tulakan\", \"lpk_id\": \"1\", \"password\": \"$2y$10$hmmbcuMsAA4k534FEyF7zeLrC8CMHKNq9p.GZyyG6TpWXVTL.WIgC\", \"username\": \"zea\", \"user_role_id\": \"4\", \"jenis_kelamin\": \"2\", \"image_foto_diri\": \"\"}');
 
-DROP TABLE IF EXISTS `comment`;
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `comment`
+--
+
 CREATE TABLE `comment` (
   `id` int(11) NOT NULL,
   `par_id` int(11) NOT NULL,
@@ -115,12 +160,21 @@ CREATE TABLE `comment` (
   `updated` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `config`;
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `config`
+--
+
 CREATE TABLE `config` (
   `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
   `value` mediumtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data untuk tabel `config`
+--
 
 INSERT INTO `config` (`id`, `name`, `value`) VALUES
 (1, 'templates', '{\"public_template\":\"AdminLTE\",\"admin_template\":\"AdminLTE\"}'),
@@ -141,7 +195,12 @@ INSERT INTO `config` (`id`, `name`, `value`) VALUES
 (18, 'testing', '{\"gambar1\":\"gambar1_image.png\",\"gambar2\":\"gambar2_image.png\"}'),
 (19, 'AdminLTE_widget', '{\"template\":\"AdminLTE\",\"menu_top\":{\"content\":\"1\"},\"content_slider\":{\"content\":\"latest\",\"limit\":\"2\"}}');
 
-DROP TABLE IF EXISTS `content`;
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `content`
+--
+
 CREATE TABLE `content` (
   `id` int(11) NOT NULL,
   `cat_ids` mediumtext NOT NULL,
@@ -171,6 +230,10 @@ CREATE TABLE `content` (
   `publish` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data untuk tabel `content`
+--
+
 INSERT INTO `content` (`id`, `cat_ids`, `par_id`, `tpl`, `tag_ids`, `title`, `slug`, `description`, `keyword`, `intro`, `content`, `source`, `image`, `icon`, `image_link`, `images`, `videos`, `document`, `author`, `hits`, `last_hits`, `rating`, `params`, `created`, `updated`, `publish`) VALUES
 (1, ',29,', 0, '0', '', 'LKP NISSAN FORTUNA PATI', 'hello-world', 'Hello World\r\n', 'Alamat : Jl. Kamandowo 23 Kab. Pati\r\nNo. Telepon : 081325388079', 'Hello World\r\n', 'LKP NISSAN FORTUNA PATI<br><p>Pusat Pendidikan : </p><p>- Bahasa inggris </p><p>- Komputer</p><p>- Montir motor/mobil</p><p>- Stir mobil</p><p><!--[if gte mso 9]><xml>\r\n <o:OfficeDocumentSettings>\r\n  <o:AllowPNG></o:AllowPNG>\r\n </o:OfficeDocumentSettings>\r\n</xml><![endif]--><!--[if gte mso 9]><xml>\r\n <w:WordDocument>\r\n  <w:View>Normal</w:View>\r\n  <w:Zoom>0</w:Zoom>\r\n  <w:TrackMoves></w:TrackMoves>\r\n  <w:TrackFormatting></w:TrackFormatting>\r\n  <w:PunctuationKerning></w:PunctuationKerning>\r\n  <w:ValidateAgainstSchemas></w:ValidateAgainstSchemas>\r\n  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>\r\n  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>\r\n  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>\r\n  <w:DoNotPromoteQF></w:DoNotPromoteQF>\r\n  <w:LidThemeOther>EN-US</w:LidThemeOther>\r\n  <w:LidThemeAsian>ZH-CN</w:LidThemeAsian>\r\n  <w:LidThemeComplexScript>HI</w:LidThemeComplexScript>\r\n  <w:Compatibility>\r\n   <w:BreakWrappedTables></w:BreakWrappedTables>\r\n   <w:SnapToGridInCell></w:SnapToGridInCell>\r\n   <w:ApplyBreakingRules></w:ApplyBreakingRules>\r\n   <w:WrapTextWithPunct></w:WrapTextWithPunct>\r\n   <w:UseAsianBreakRules></w:UseAsianBreakRules>\r\n   <w:DontGrowAutofit></w:DontGrowAutofit>\r\n   <w:SplitPgBreakAndParaMark></w:SplitPgBreakAndParaMark>\r\n   <w:EnableOpenTypeKerning></w:EnableOpenTypeKerning>\r\n   <w:DontFlipMirrorIndents></w:DontFlipMirrorIndents>\r\n   <w:OverrideTableStyleHps></w:OverrideTableStyleHps>\r\n   <w:UseFELayout></w:UseFELayout>\r\n  </w:Compatibility>\r\n  <m:mathPr>\r\n   <m:mathFont m:val=\"Cambria Math\"></m:mathFont>\r\n   <m:brkBin m:val=\"before\"></m:brkBin>\r\n   <m:brkBinSub m:val=\"&#45;-\"></m:brkBinSub>\r\n   <m:smallFrac m:val=\"off\"></m:smallFrac>\r\n   <m:dispDef></m:dispDef>\r\n   <m:lMargin m:val=\"0\"></m:lMargin>\r\n   <m:rMargin m:val=\"0\"></m:rMargin>\r\n   <m:defJc m:val=\"centerGroup\"></m:defJc>\r\n   <m:wrapIndent m:val=\"1440\"></m:wrapIndent>\r\n   <m:intLim m:val=\"subSup\"></m:intLim>\r\n   <m:naryLim m:val=\"undOvr\"></m:naryLim>\r\n  </m:mathPr></w:WordDocument>\r\n</xml><![endif]--><!--[if gte mso 9]><xml>\r\n <w:LatentStyles DefLockedState=\"false\" DefUnhideWhenUsed=\"false\"\r\n  DefSemiHidden=\"false\" DefQFormat=\"false\" DefPriority=\"99\"\r\n  LatentStyleCount=\"376\">\r\n  <w:LsdException Locked=\"false\" Priority=\"0\" QFormat=\"true\" Name=\"Normal\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"9\" QFormat=\"true\" Name=\"heading 1\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"9\" SemiHidden=\"true\"\r\n   UnhideWhenUsed=\"true\" QFormat=\"true\" Name=\"heading 2\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"9\" SemiHidden=\"true\"\r\n   UnhideWhenUsed=\"true\" QFormat=\"true\" Name=\"heading 3\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"9\" SemiHidden=\"true\"\r\n   UnhideWhenUsed=\"true\" QFormat=\"true\" Name=\"heading 4\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"9\" SemiHidden=\"true\"\r\n   UnhideWhenUsed=\"true\" QFormat=\"true\" Name=\"heading 5\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"9\" SemiHidden=\"true\"\r\n   UnhideWhenUsed=\"true\" QFormat=\"true\" Name=\"heading 6\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"9\" SemiHidden=\"true\"\r\n   UnhideWhenUsed=\"true\" QFormat=\"true\" Name=\"heading 7\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"9\" SemiHidden=\"true\"\r\n   UnhideWhenUsed=\"true\" QFormat=\"true\" Name=\"heading 8\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"9\" SemiHidden=\"true\"\r\n   UnhideWhenUsed=\"true\" QFormat=\"true\" Name=\"heading 9\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"index 1\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"index 2\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"index 3\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"index 4\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"index 5\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"index 6\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"index 7\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"index 8\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"index 9\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"39\" SemiHidden=\"true\"\r\n   UnhideWhenUsed=\"true\" Name=\"toc 1\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"39\" SemiHidden=\"true\"\r\n   UnhideWhenUsed=\"true\" Name=\"toc 2\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"39\" SemiHidden=\"true\"\r\n   UnhideWhenUsed=\"true\" Name=\"toc 3\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"39\" SemiHidden=\"true\"\r\n   UnhideWhenUsed=\"true\" Name=\"toc 4\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"39\" SemiHidden=\"true\"\r\n   UnhideWhenUsed=\"true\" Name=\"toc 5\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"39\" SemiHidden=\"true\"\r\n   UnhideWhenUsed=\"true\" Name=\"toc 6\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"39\" SemiHidden=\"true\"\r\n   UnhideWhenUsed=\"true\" Name=\"toc 7\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"39\" SemiHidden=\"true\"\r\n   UnhideWhenUsed=\"true\" Name=\"toc 8\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"39\" SemiHidden=\"true\"\r\n   UnhideWhenUsed=\"true\" Name=\"toc 9\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Normal Indent\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"footnote text\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"annotation text\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"header\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"footer\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"index heading\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"35\" SemiHidden=\"true\"\r\n   UnhideWhenUsed=\"true\" QFormat=\"true\" Name=\"caption\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"table of figures\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"envelope address\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"envelope return\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"footnote reference\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"annotation reference\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"line number\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"page number\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"endnote reference\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"endnote text\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"table of authorities\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"macro\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"toa heading\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"List\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"List Bullet\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"List Number\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"List 2\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"List 3\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"List 4\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"List 5\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"List Bullet 2\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"List Bullet 3\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"List Bullet 4\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"List Bullet 5\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"List Number 2\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"List Number 3\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"List Number 4\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"List Number 5\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"10\" QFormat=\"true\" Name=\"Title\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Closing\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Signature\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"1\" SemiHidden=\"true\"\r\n   UnhideWhenUsed=\"true\" Name=\"Default Paragraph Font\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Body Text\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Body Text Indent\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"List Continue\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"List Continue 2\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"List Continue 3\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"List Continue 4\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"List Continue 5\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Message Header\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"11\" QFormat=\"true\" Name=\"Subtitle\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Salutation\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Date\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Body Text First Indent\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Body Text First Indent 2\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Note Heading\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Body Text 2\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Body Text 3\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Body Text Indent 2\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Body Text Indent 3\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Block Text\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Hyperlink\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"FollowedHyperlink\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"22\" QFormat=\"true\" Name=\"Strong\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"20\" QFormat=\"true\" Name=\"Emphasis\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Document Map\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Plain Text\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"E-mail Signature\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"HTML Top of Form\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"HTML Bottom of Form\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Normal (Web)\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"HTML Acronym\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"HTML Address\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"HTML Cite\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"HTML Code\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"HTML Definition\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"HTML Keyboard\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"HTML Preformatted\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"HTML Sample\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"HTML Typewriter\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"HTML Variable\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Normal Table\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"annotation subject\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"No List\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Outline List 1\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Outline List 2\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Outline List 3\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Simple 1\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Simple 2\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Simple 3\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Classic 1\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Classic 2\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Classic 3\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Classic 4\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Colorful 1\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Colorful 2\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Colorful 3\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Columns 1\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Columns 2\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Columns 3\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Columns 4\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Columns 5\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Grid 1\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Grid 2\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Grid 3\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Grid 4\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Grid 5\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Grid 6\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Grid 7\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Grid 8\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table List 1\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table List 2\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table List 3\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table List 4\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table List 5\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table List 6\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table List 7\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table List 8\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table 3D effects 1\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table 3D effects 2\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table 3D effects 3\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Contemporary\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Elegant\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Professional\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Subtle 1\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Subtle 2\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Web 1\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Web 2\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Web 3\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Balloon Text\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"39\" Name=\"Table Grid\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Table Theme\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" Name=\"Placeholder Text\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"1\" QFormat=\"true\" Name=\"No Spacing\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"60\" Name=\"Light Shading\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"61\" Name=\"Light List\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"62\" Name=\"Light Grid\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"63\" Name=\"Medium Shading 1\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"64\" Name=\"Medium Shading 2\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"65\" Name=\"Medium List 1\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"66\" Name=\"Medium List 2\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"67\" Name=\"Medium Grid 1\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"68\" Name=\"Medium Grid 2\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"69\" Name=\"Medium Grid 3\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"70\" Name=\"Dark List\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"71\" Name=\"Colorful Shading\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"72\" Name=\"Colorful List\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"73\" Name=\"Colorful Grid\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"60\" Name=\"Light Shading Accent 1\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"61\" Name=\"Light List Accent 1\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"62\" Name=\"Light Grid Accent 1\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"63\" Name=\"Medium Shading 1 Accent 1\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"64\" Name=\"Medium Shading 2 Accent 1\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"65\" Name=\"Medium List 1 Accent 1\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" Name=\"Revision\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"34\" QFormat=\"true\"\r\n   Name=\"List Paragraph\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"29\" QFormat=\"true\" Name=\"Quote\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"30\" QFormat=\"true\"\r\n   Name=\"Intense Quote\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"66\" Name=\"Medium List 2 Accent 1\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"67\" Name=\"Medium Grid 1 Accent 1\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"68\" Name=\"Medium Grid 2 Accent 1\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"69\" Name=\"Medium Grid 3 Accent 1\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"70\" Name=\"Dark List Accent 1\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"71\" Name=\"Colorful Shading Accent 1\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"72\" Name=\"Colorful List Accent 1\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"73\" Name=\"Colorful Grid Accent 1\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"60\" Name=\"Light Shading Accent 2\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"61\" Name=\"Light List Accent 2\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"62\" Name=\"Light Grid Accent 2\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"63\" Name=\"Medium Shading 1 Accent 2\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"64\" Name=\"Medium Shading 2 Accent 2\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"65\" Name=\"Medium List 1 Accent 2\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"66\" Name=\"Medium List 2 Accent 2\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"67\" Name=\"Medium Grid 1 Accent 2\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"68\" Name=\"Medium Grid 2 Accent 2\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"69\" Name=\"Medium Grid 3 Accent 2\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"70\" Name=\"Dark List Accent 2\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"71\" Name=\"Colorful Shading Accent 2\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"72\" Name=\"Colorful List Accent 2\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"73\" Name=\"Colorful Grid Accent 2\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"60\" Name=\"Light Shading Accent 3\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"61\" Name=\"Light List Accent 3\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"62\" Name=\"Light Grid Accent 3\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"63\" Name=\"Medium Shading 1 Accent 3\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"64\" Name=\"Medium Shading 2 Accent 3\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"65\" Name=\"Medium List 1 Accent 3\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"66\" Name=\"Medium List 2 Accent 3\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"67\" Name=\"Medium Grid 1 Accent 3\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"68\" Name=\"Medium Grid 2 Accent 3\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"69\" Name=\"Medium Grid 3 Accent 3\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"70\" Name=\"Dark List Accent 3\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"71\" Name=\"Colorful Shading Accent 3\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"72\" Name=\"Colorful List Accent 3\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"73\" Name=\"Colorful Grid Accent 3\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"60\" Name=\"Light Shading Accent 4\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"61\" Name=\"Light List Accent 4\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"62\" Name=\"Light Grid Accent 4\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"63\" Name=\"Medium Shading 1 Accent 4\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"64\" Name=\"Medium Shading 2 Accent 4\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"65\" Name=\"Medium List 1 Accent 4\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"66\" Name=\"Medium List 2 Accent 4\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"67\" Name=\"Medium Grid 1 Accent 4\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"68\" Name=\"Medium Grid 2 Accent 4\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"69\" Name=\"Medium Grid 3 Accent 4\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"70\" Name=\"Dark List Accent 4\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"71\" Name=\"Colorful Shading Accent 4\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"72\" Name=\"Colorful List Accent 4\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"73\" Name=\"Colorful Grid Accent 4\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"60\" Name=\"Light Shading Accent 5\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"61\" Name=\"Light List Accent 5\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"62\" Name=\"Light Grid Accent 5\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"63\" Name=\"Medium Shading 1 Accent 5\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"64\" Name=\"Medium Shading 2 Accent 5\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"65\" Name=\"Medium List 1 Accent 5\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"66\" Name=\"Medium List 2 Accent 5\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"67\" Name=\"Medium Grid 1 Accent 5\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"68\" Name=\"Medium Grid 2 Accent 5\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"69\" Name=\"Medium Grid 3 Accent 5\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"70\" Name=\"Dark List Accent 5\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"71\" Name=\"Colorful Shading Accent 5\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"72\" Name=\"Colorful List Accent 5\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"73\" Name=\"Colorful Grid Accent 5\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"60\" Name=\"Light Shading Accent 6\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"61\" Name=\"Light List Accent 6\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"62\" Name=\"Light Grid Accent 6\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"63\" Name=\"Medium Shading 1 Accent 6\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"64\" Name=\"Medium Shading 2 Accent 6\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"65\" Name=\"Medium List 1 Accent 6\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"66\" Name=\"Medium List 2 Accent 6\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"67\" Name=\"Medium Grid 1 Accent 6\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"68\" Name=\"Medium Grid 2 Accent 6\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"69\" Name=\"Medium Grid 3 Accent 6\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"70\" Name=\"Dark List Accent 6\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"71\" Name=\"Colorful Shading Accent 6\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"72\" Name=\"Colorful List Accent 6\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"73\" Name=\"Colorful Grid Accent 6\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"19\" QFormat=\"true\"\r\n   Name=\"Subtle Emphasis\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"21\" QFormat=\"true\"\r\n   Name=\"Intense Emphasis\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"31\" QFormat=\"true\"\r\n   Name=\"Subtle Reference\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"32\" QFormat=\"true\"\r\n   Name=\"Intense Reference\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"33\" QFormat=\"true\" Name=\"Book Title\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"37\" SemiHidden=\"true\"\r\n   UnhideWhenUsed=\"true\" Name=\"Bibliography\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"39\" SemiHidden=\"true\"\r\n   UnhideWhenUsed=\"true\" QFormat=\"true\" Name=\"TOC Heading\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"41\" Name=\"Plain Table 1\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"42\" Name=\"Plain Table 2\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"43\" Name=\"Plain Table 3\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"44\" Name=\"Plain Table 4\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"45\" Name=\"Plain Table 5\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"40\" Name=\"Grid Table Light\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"46\" Name=\"Grid Table 1 Light\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"47\" Name=\"Grid Table 2\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"48\" Name=\"Grid Table 3\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"49\" Name=\"Grid Table 4\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"50\" Name=\"Grid Table 5 Dark\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"51\" Name=\"Grid Table 6 Colorful\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"52\" Name=\"Grid Table 7 Colorful\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"46\"\r\n   Name=\"Grid Table 1 Light Accent 1\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"47\" Name=\"Grid Table 2 Accent 1\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"48\" Name=\"Grid Table 3 Accent 1\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"49\" Name=\"Grid Table 4 Accent 1\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"50\" Name=\"Grid Table 5 Dark Accent 1\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"51\"\r\n   Name=\"Grid Table 6 Colorful Accent 1\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"52\"\r\n   Name=\"Grid Table 7 Colorful Accent 1\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"46\"\r\n   Name=\"Grid Table 1 Light Accent 2\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"47\" Name=\"Grid Table 2 Accent 2\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"48\" Name=\"Grid Table 3 Accent 2\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"49\" Name=\"Grid Table 4 Accent 2\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"50\" Name=\"Grid Table 5 Dark Accent 2\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"51\"\r\n   Name=\"Grid Table 6 Colorful Accent 2\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"52\"\r\n   Name=\"Grid Table 7 Colorful Accent 2\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"46\"\r\n   Name=\"Grid Table 1 Light Accent 3\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"47\" Name=\"Grid Table 2 Accent 3\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"48\" Name=\"Grid Table 3 Accent 3\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"49\" Name=\"Grid Table 4 Accent 3\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"50\" Name=\"Grid Table 5 Dark Accent 3\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"51\"\r\n   Name=\"Grid Table 6 Colorful Accent 3\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"52\"\r\n   Name=\"Grid Table 7 Colorful Accent 3\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"46\"\r\n   Name=\"Grid Table 1 Light Accent 4\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"47\" Name=\"Grid Table 2 Accent 4\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"48\" Name=\"Grid Table 3 Accent 4\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"49\" Name=\"Grid Table 4 Accent 4\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"50\" Name=\"Grid Table 5 Dark Accent 4\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"51\"\r\n   Name=\"Grid Table 6 Colorful Accent 4\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"52\"\r\n   Name=\"Grid Table 7 Colorful Accent 4\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"46\"\r\n   Name=\"Grid Table 1 Light Accent 5\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"47\" Name=\"Grid Table 2 Accent 5\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"48\" Name=\"Grid Table 3 Accent 5\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"49\" Name=\"Grid Table 4 Accent 5\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"50\" Name=\"Grid Table 5 Dark Accent 5\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"51\"\r\n   Name=\"Grid Table 6 Colorful Accent 5\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"52\"\r\n   Name=\"Grid Table 7 Colorful Accent 5\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"46\"\r\n   Name=\"Grid Table 1 Light Accent 6\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"47\" Name=\"Grid Table 2 Accent 6\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"48\" Name=\"Grid Table 3 Accent 6\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"49\" Name=\"Grid Table 4 Accent 6\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"50\" Name=\"Grid Table 5 Dark Accent 6\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"51\"\r\n   Name=\"Grid Table 6 Colorful Accent 6\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"52\"\r\n   Name=\"Grid Table 7 Colorful Accent 6\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"46\" Name=\"List Table 1 Light\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"47\" Name=\"List Table 2\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"48\" Name=\"List Table 3\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"49\" Name=\"List Table 4\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"50\" Name=\"List Table 5 Dark\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"51\" Name=\"List Table 6 Colorful\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"52\" Name=\"List Table 7 Colorful\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"46\"\r\n   Name=\"List Table 1 Light Accent 1\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"47\" Name=\"List Table 2 Accent 1\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"48\" Name=\"List Table 3 Accent 1\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"49\" Name=\"List Table 4 Accent 1\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"50\" Name=\"List Table 5 Dark Accent 1\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"51\"\r\n   Name=\"List Table 6 Colorful Accent 1\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"52\"\r\n   Name=\"List Table 7 Colorful Accent 1\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"46\"\r\n   Name=\"List Table 1 Light Accent 2\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"47\" Name=\"List Table 2 Accent 2\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"48\" Name=\"List Table 3 Accent 2\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"49\" Name=\"List Table 4 Accent 2\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"50\" Name=\"List Table 5 Dark Accent 2\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"51\"\r\n   Name=\"List Table 6 Colorful Accent 2\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"52\"\r\n   Name=\"List Table 7 Colorful Accent 2\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"46\"\r\n   Name=\"List Table 1 Light Accent 3\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"47\" Name=\"List Table 2 Accent 3\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"48\" Name=\"List Table 3 Accent 3\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"49\" Name=\"List Table 4 Accent 3\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"50\" Name=\"List Table 5 Dark Accent 3\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"51\"\r\n   Name=\"List Table 6 Colorful Accent 3\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"52\"\r\n   Name=\"List Table 7 Colorful Accent 3\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"46\"\r\n   Name=\"List Table 1 Light Accent 4\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"47\" Name=\"List Table 2 Accent 4\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"48\" Name=\"List Table 3 Accent 4\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"49\" Name=\"List Table 4 Accent 4\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"50\" Name=\"List Table 5 Dark Accent 4\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"51\"\r\n   Name=\"List Table 6 Colorful Accent 4\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"52\"\r\n   Name=\"List Table 7 Colorful Accent 4\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"46\"\r\n   Name=\"List Table 1 Light Accent 5\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"47\" Name=\"List Table 2 Accent 5\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"48\" Name=\"List Table 3 Accent 5\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"49\" Name=\"List Table 4 Accent 5\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"50\" Name=\"List Table 5 Dark Accent 5\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"51\"\r\n   Name=\"List Table 6 Colorful Accent 5\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"52\"\r\n   Name=\"List Table 7 Colorful Accent 5\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"46\"\r\n   Name=\"List Table 1 Light Accent 6\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"47\" Name=\"List Table 2 Accent 6\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"48\" Name=\"List Table 3 Accent 6\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"49\" Name=\"List Table 4 Accent 6\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"50\" Name=\"List Table 5 Dark Accent 6\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"51\"\r\n   Name=\"List Table 6 Colorful Accent 6\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" Priority=\"52\"\r\n   Name=\"List Table 7 Colorful Accent 6\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Mention\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Smart Hyperlink\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Hashtag\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Unresolved Mention\"></w:LsdException>\r\n  <w:LsdException Locked=\"false\" SemiHidden=\"true\" UnhideWhenUsed=\"true\"\r\n   Name=\"Smart Link\"></w:LsdException>\r\n </w:LatentStyles>\r\n</xml><![endif]--><!--[if gte mso 10]>\r\n<style>\r\n /* Style Definitions */\r\n table.MsoNormalTable\r\n	{mso-style-name:\"Table Normal\";\r\n	mso-tstyle-rowband-size:0;\r\n	mso-tstyle-colband-size:0;\r\n	mso-style-noshow:yes;\r\n	mso-style-priority:99;\r\n	mso-style-parent:\"\";\r\n	mso-padding-alt:0in 5.4pt 0in 5.4pt;\r\n	mso-para-margin-top:0in;\r\n	mso-para-margin-right:0in;\r\n	mso-para-margin-bottom:8.0pt;\r\n	mso-para-margin-left:0in;\r\n	line-height:107%;\r\n	mso-pagination:widow-orphan;\r\n	font-size:11.0pt;\r\n	font-family:\"Calibri\",sans-serif;\r\n	mso-ascii-font-family:Calibri;\r\n	mso-ascii-theme-font:minor-latin;\r\n	mso-hansi-font-family:Calibri;\r\n	mso-hansi-theme-font:minor-latin;\r\n	mso-bidi-font-family:Mangal;\r\n	mso-bidi-theme-font:minor-bidi;\r\n	mso-bidi-language:AR-SA;}\r\n</style>\r\n<![endif]-->\r\n\r\n</p><p class=\"MsoNormal\" style=\"text-align:center\" align=\"center\"><b><span style=\"font-size:12.0pt;line-height:106%;font-family:&quot;Times New Roman&quot;,serif;\r\nmso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-language:ZH-CN;\r\nmso-bidi-language:HI\">VISI</span></b></p>\r\n\r\n<p class=\"MsoNormal\" style=\"text-align:center\" align=\"center\"><span style=\"font-size:12.0pt;line-height:106%;font-family:&quot;Times New Roman&quot;,serif;\r\nmso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-language:ZH-CN;\r\nmso-bidi-language:HI\">Mencerdaskan kehidupan bangsa dan mengentaskan kemiskinan</span></p>\r\n\r\n<p class=\"MsoNormal\" style=\"text-align:center\" align=\"center\"><b><span style=\"font-size:12.0pt;line-height:106%;font-family:&quot;Times New Roman&quot;,serif;\r\nmso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-language:ZH-CN;\r\nmso-bidi-language:HI\">MISI</span></b></p>\r\n\r\n<p class=\"MsoListParagraphCxSpFirst\" style=\"text-align:justify;text-justify:inter-ideograph;\r\ntext-indent:-.25in;line-height:150%;mso-list:l0 level1 lfo1\"><span style=\"font-size:12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;\r\nmso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-language:ZH-CN;\r\nmso-bidi-language:HI\"><span style=\"mso-list:Ignore\">1.<span style=\"font:7.0pt &quot;Times New Roman&quot;\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n</span></span></span><span style=\"font-size:12.0pt;line-height:150%;\r\nfont-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:&quot;Times New Roman&quot;;\r\nmso-fareast-language:ZH-CN;mso-bidi-language:HI\">Menjadikan lpk yang terbaik di\r\njawa tengah </span></p>\r\n\r\n<p class=\"MsoListParagraphCxSpMiddle\" style=\"text-align:justify;text-justify:\r\ninter-ideograph;text-indent:-.25in;line-height:150%;mso-list:l0 level1 lfo1\"><span style=\"font-size:12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;\r\nmso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-language:ZH-CN;\r\nmso-bidi-language:HI\"><span style=\"mso-list:Ignore\">2.<span style=\"font:7.0pt &quot;Times New Roman&quot;\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n</span></span></span><span style=\"font-size:12.0pt;line-height:150%;\r\nfont-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:&quot;Times New Roman&quot;;\r\nmso-fareast-language:ZH-CN;mso-bidi-language:HI\">Menjadikan siswa yang\r\nberakhlaq mulia, bertoleransi dan bertaqwa kepada Tuhan Yang Maha Esa</span></p>\r\n\r\n<p class=\"MsoListParagraphCxSpMiddle\" style=\"text-align:justify;text-justify:\r\ninter-ideograph;text-indent:-.25in;line-height:150%;mso-list:l0 level1 lfo1\"><span style=\"font-size:12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;\r\nmso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-language:ZH-CN;\r\nmso-bidi-language:HI\"><span style=\"mso-list:Ignore\">3.<span style=\"font:7.0pt &quot;Times New Roman&quot;\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n</span></span></span><span style=\"font-size:12.0pt;line-height:150%;\r\nfont-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:&quot;Times New Roman&quot;;\r\nmso-fareast-language:ZH-CN;mso-bidi-language:HI\">Menanamkan sikap cinta tanah\r\nair dan bangsa</span></p>\r\n\r\n<p class=\"MsoListParagraphCxSpLast\" style=\"text-align:justify;text-justify:inter-ideograph;\r\ntext-indent:-.25in;line-height:150%;mso-list:l0 level1 lfo1\"><span style=\"font-size:12.0pt;line-height:150%;font-family:&quot;Times New Roman&quot;,serif;\r\nmso-fareast-font-family:&quot;Times New Roman&quot;;mso-fareast-language:ZH-CN;\r\nmso-bidi-language:HI\"><span style=\"mso-list:Ignore\">4.<span style=\"font:7.0pt &quot;Times New Roman&quot;\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;\r\n</span></span></span><span style=\"font-size:12.0pt;line-height:150%;\r\nfont-family:&quot;Times New Roman&quot;,serif;mso-fareast-font-family:&quot;Times New Roman&quot;;\r\nmso-fareast-language:ZH-CN;mso-bidi-language:HI\">Menanamkan sikap kreatf dan\r\nsikap berwirausaha</span></p>\r\n\r\n', '', 'image_Hello_World.jpg', '081325388079', 'n.jpg', '[\"images_Hello_World_0_1594750062.jpg\"]', '', '', 'lpkfortunapati', 175, '0000-00-00 00:00:00', '', '', '2018-11-11 22:35:50', '2021-06-29 12:10:16', 1);
 INSERT INTO `content` (`id`, `cat_ids`, `par_id`, `tpl`, `tag_ids`, `title`, `slug`, `description`, `keyword`, `intro`, `content`, `source`, `image`, `icon`, `image_link`, `images`, `videos`, `document`, `author`, `hits`, `last_hits`, `rating`, `params`, `created`, `updated`, `publish`) VALUES
@@ -179,7 +242,12 @@ INSERT INTO `content` (`id`, `cat_ids`, `par_id`, `tpl`, `tag_ids`, `title`, `sl
 (97, ',29,', 0, '0', '', 'slider 2', 'slider-2', 'slider 2', 'slider 2', 'slider 2', '<p>slider 2<br></p>', '', 'image_slider_2.PNG', '', '', '', '', '', 'lpkfortunapati', 0, '0000-00-00 00:00:00', '', '', '2020-08-13 12:14:07', '2020-08-15 06:26:17', 1),
 (98, ',29,', 0, '0', '', 'slider 1', 'slider-1', 'slider 1', 'slider 1', 'slider 1', '<p>slider 1<br></p>', '', 'image_slider_1.png', '', '', '', '', '', 'lpkfortunapati', 0, '0000-00-00 00:00:00', '', '', '2020-08-13 12:17:04', '2020-08-13 12:18:57', 1);
 
-DROP TABLE IF EXISTS `content_cat`;
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `content_cat`
+--
+
 CREATE TABLE `content_cat` (
   `id` int(11) NOT NULL,
   `par_id` int(11) NOT NULL,
@@ -193,11 +261,20 @@ CREATE TABLE `content_cat` (
   `updated` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data untuk tabel `content_cat`
+--
+
 INSERT INTO `content_cat` (`id`, `par_id`, `title`, `slug`, `image`, `icon`, `description`, `publish`, `created`, `updated`) VALUES
 (1, 0, 'Uncategorized', 'uncategorized', '', '', '', 1, '2018-11-11 22:23:38', '2020-07-14 16:53:26'),
 (29, 0, 'slider', 'slider', '', '', '', 1, '2020-07-11 11:01:09', '2020-07-14 16:53:26');
 
-DROP TABLE IF EXISTS `content_tag`;
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `content_tag`
+--
+
 CREATE TABLE `content_tag` (
   `id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
@@ -205,7 +282,12 @@ CREATE TABLE `content_tag` (
   `created` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `instruktur`;
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `instruktur`
+--
+
 CREATE TABLE `instruktur` (
   `id` int(11) NOT NULL,
   `lpk_id` int(11) NOT NULL,
@@ -217,11 +299,20 @@ CREATE TABLE `instruktur` (
   `hp` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data untuk tabel `instruktur`
+--
+
 INSERT INTO `instruktur` (`id`, `lpk_id`, `nama`, `tempat_lahir`, `tgl_lahir`, `jk`, `alamat`, `hp`) VALUES
 (1, 1, 'agus', 'Pati', '2020-08-13', 1, 'Jl. K. H. Wahid Hasyim No.4, Pati Kidul, Kec. Pati, Kabupaten Pati, Jawa Tengah 59114', ''),
 (2, 1, 'JONO', 'Pati', '2021-03-19', 1, 'Pati', 'https://wa.me/+62852');
 
-DROP TABLE IF EXISTS `invoice`;
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `invoice`
+--
+
 CREATE TABLE `invoice` (
   `id` int(11) NOT NULL,
   `code` varchar(255) NOT NULL,
@@ -235,7 +326,12 @@ CREATE TABLE `invoice` (
   `updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `lpk`;
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `lpk`
+--
+
 CREATE TABLE `lpk` (
   `id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
@@ -247,6 +343,10 @@ CREATE TABLE `lpk` (
   `updated` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data untuk tabel `lpk`
+--
+
 INSERT INTO `lpk` (`id`, `title`, `image`, `description`, `latitude`, `longitude`, `created`, `updated`) VALUES
 (1, 'LPK fortuna pati', 'image_LPK_fortuna_pati.PNG', 'Lpk fortuna pati', '0', '0', '2020-07-10 08:29:17', '2021-06-29 12:32:19'),
 (11, 'LKP PEPABRI PATI', 'image_LKP_PEPABRI_PATI.PNG', 'Pendidikan Serendah-rendahnya SD\r\n\r\n\r\n- Untuk masing-masing jenis kursus dikenakan uang pendaftaran sebesar Rp. 50.000,- sertifikat Rp.50.000,-\r\n- Bagi siswa yang membatalkan diri dari kursus uang pendaftaran tidak dapat diminta lagi\r\n- Bagi siswa yang tidak lulus ujian dapat mengulang kembali tanpa dipungut biaya\r\n\r\nlama kursus 	                                : 3 Bulan\r\nJadwal 	                                        : 3\r\nBiaya Pembayaran Pertama 	: Rp,- 700,000\r\nBiaya Pembayaran Kedua  	: Rp,- 900,000', '', '', '2021-06-29 11:32:25', '2021-06-29 11:32:25'),
@@ -255,27 +355,50 @@ INSERT INTO `lpk` (`id`, `title`, `image`, `description`, `latitude`, `longitude
 (14, 'LKP ASY SYIFA', 'image_LKP_ASY_SYIFA.PNG', 'PAKET KURSUS : 1. Ms. Word + Excel 2. Ms. Word + PPT 3. Ms. Excel + PPT 4. Ms. Word + Excel + PPT 5. Paket Aplikasi Perkantoran 6. Paket Desain Gratis\r\nFASILITAS :\r\n1. RUANG NYAMAN\r\n2. 1 KOMPUTER 1 ANAK\r\n3. MODUL PEMBELAJARAN\r\n4. BERSERTIFIKAT\r\n5. TUTOR BERPENGALAMAN\r\n\r\nlama kursus 	: 2 Bulan\r\nJadwal 	: 2\r\nBiaya Pembayaran Pertama 	: Rp,- 300,00\r\nBiaya Pembayaran Kedua 	: Rp,- 500,00 ', '', '', '2021-06-29 11:51:44', '2021-06-29 11:51:44'),
 (15, 'LKP ARDIAN', 'image_LKP_ARDIAN.PNG', 'Menyediakan Kursus : - TATA KECANTIKAN RAMBUT - TATA KECANTIKAN KULIT - TATA RIAS PENGANTIN - SPA TERAPHY - HANTARAN\r\nlama kursus 	: 2 Bulan\r\nJadwal 	: 2\r\nBiaya Pembayaran Pertama 	: Rp,- 450,00\r\nBiaya Pembayaran Kedua 	: Rp,- 600,00 ', '', '', '2021-06-29 11:55:20', '2021-06-29 11:55:20');
 
-DROP TABLE IF EXISTS `lpk_data`;
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `lpk_data`
+--
+
 CREATE TABLE `lpk_data` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `value` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data untuk tabel `lpk_data`
+--
+
 INSERT INTO `lpk_data` (`id`, `name`, `value`) VALUES
 (1, 'hw==', '{\"lpk_id\":\"1\",\"alamat\":\"Jl. Supriyadi No. 51, Kec. Pati\",\"kontak\":\"lkpnissanfortunapati.blogspot.com\",\"koordinat\":\"<iframe src=\\\"https:\\/\\/www.google.com\\/maps\\/embed?pb=!1m18!1m12!1m3!1d63388.66810826814!2d111.01122289317419!3d-6.795173492616266!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e70d2509b7e7bfb%3A0x9b0dd260bae1dbdb!2sLembaga%20Kursus%20Dan%20Pelatihan%20Nissan%20Fortuna%20pati!5e0!3m2!1sid!2sid!4v1597284171767!5m2!1sid!2sid\\\" width=\\\"600\\\" height=\\\"450\\\" frameborder=\\\"0\\\" style=\\\"border:0;\\\" allowfullscreen=\\\"\\\" aria-hidden=\\\"false\\\" tabindex=\\\"0\\\"><\\/iframe>\",\"wa\":\"+6285225836130\",\"no_rek\":\"123456789\",\"nama_rek\":\"Yayasan\",\"bank_rek\":\"BCA\"}');
 
-DROP TABLE IF EXISTS `lpk_data_dok`;
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `lpk_data_dok`
+--
+
 CREATE TABLE `lpk_data_dok` (
   `id` int(11) NOT NULL,
   `lpk_id` int(11) NOT NULL,
   `images` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data untuk tabel `lpk_data_dok`
+--
+
 INSERT INTO `lpk_data_dok` (`id`, `lpk_id`, `images`) VALUES
 (2, 1, '[\"image_0_1594556923.jpeg\",\"image_1_1594556923.jpg\",\"image_2_1594556923.png\",\"image_2_1594555593.jpg\"]');
 
-DROP TABLE IF EXISTS `lpk_program`;
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `lpk_program`
+--
+
 CREATE TABLE `lpk_program` (
   `id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
@@ -292,6 +415,10 @@ CREATE TABLE `lpk_program` (
   `updated` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data untuk tabel `lpk_program`
+--
+
 INSERT INTO `lpk_program` (`id`, `title`, `description`, `foto`, `syarat`, `lama_kursus`, `jadwal`, `pembayaran_1`, `pembayaran_2`, `lain_lain`, `lpk_id`, `created`, `updated`) VALUES
 (4, 'LKP PEPABRI PATI', '- Kursus Stir Mobil\r\n- Kursus Montir Mobil\r\n- Kursus Montir Sepeda Motor', 'foto_LKP_PEPABRI_PATI.jpg', '<p>Pendidikan Serendah-rendahnya SD</p><p><br>- Untuk masing-masing jenis kursus dikenakan uang pendaftaran sebesar Rp. 50.000,- sertifikat Rp.50.000,-<br>- Bagi siswa yang membatalkan diri dari kursus uang pendaftaran tidak dapat diminta lagi<br>- Bagi siswa yang tidak lulus ujian dapat mengulang kembali tanpa dipungut biaya<br></p>', 3, 'Pagi jam 08.00 - Siang jam 14.30 - Sore jam 15.00', 700, 900, '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63389.29922731928!2d111.01570004316727!3d-6.79038439348578!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e70d2ff81bcaf79%3A0x79f597e7bcd6a8db!2sKursus%20mengemudi%20Pati%20(LKP%20Pepabri)!5e0!3m2!1sid!2sid!4v1597287540878!5m2!1sid!2sid\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0;\" allowfullscreen=\"\" aria-hidden=\"false\" tabindex=\"0\"></iframe>', 1, '2020-07-15 00:42:44', '2020-08-13 09:59:31'),
 (5, 'LKP Sista Sari', '- Tata Kecantikan Rambut\r\n- Tata Kecantikan Kulit\r\n- Tata Kecantikan Pengantin\r\n- Spa Terapis\r\n- Hantaran', 'foto_LKP_Sista_Sari.jpg', '<p>Pas Photo 3x4&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2 Lembar<br></p><p>Foto Copy KTP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2 Lembar<br></p><p>Biaya Pendaftaran<br></p>', 3, '20x Pertemuan', 500, 250, '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3962.1902742377265!2d111.03922331427593!3d-6.746632995122957!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e70d25494f0bfad%3A0xd180ad9e38b5b120!2sLKP%20Sistha%20Sari!5e0!3m2!1sid!2sid!4v1597286483060!5m2!1sid!2sid\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0;\" allowfullscreen=\"\" aria-hidden=\"false\" tabindex=\"0\"></iframe>', 1, '2020-07-15 19:05:19', '2020-08-13 09:41:51'),
@@ -300,7 +427,12 @@ INSERT INTO `lpk_program` (`id`, `title`, `description`, `foto`, `syarat`, `lama
 (8, 'lpk ardian', 'Menyediakan Kursus :\r\n\r\n- TATA KECANTIKAN RAMBUT\r\n\r\n- TATA KECANTIKAN KULIT\r\n\r\n- TATA RIAS PENGANTIN\r\n\r\n- SPA TERAPHY\r\n\r\n- HANTARAN', 'foto_lpk_ardian.PNG', '', 2, '20x Pertemuan', 450, 600, '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63388.66810826814!2d111.01122289317419!3d-6.795173492616266!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e70d2509b7e7bfb%3A0x9b0dd260bae1dbdb!2sLembaga%20Kursus%20Dan%20Pelatihan%20Nissan%20Fortuna%20pati!5e0!3m2!1sid!2sid!4v1597284171767!5m2!1sid!2sid\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0;\" allowfullscreen=\"\" aria-hidden=\"false\" tabindex=\"0\"></iframe>', 0, '2020-07-15 20:03:27', '2021-06-29 12:21:41'),
 (9, 'Kursus Stir motor', 'Kursus Stir Mobil', 'foto_LKP_NISSAN_FORTUNA_PATI.jpg', '', 2, '20x Pertemuan', 700, 900, '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63388.66810826814!2d111.01122289317419!3d-6.795173492616266!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e70d2509b7e7bfb%3A0x9b0dd260bae1dbdb!2sLembaga%20Kursus%20Dan%20Pelatihan%20Nissan%20Fortuna%20pati!5e0!3m2!1sid!2sid!4v1597284171767!5m2!1sid!2sid\" width=\"600\" height=\"450\" frameborder=\"0\" style=\"border:0;\" allowfullscreen=\"\" aria-hidden=\"false\" tabindex=\"0\"></iframe>', 0, '2020-08-13 09:13:09', '2021-06-30 04:41:46');
 
-DROP TABLE IF EXISTS `lpk_program_member`;
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `lpk_program_member`
+--
+
 CREATE TABLE `lpk_program_member` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
@@ -310,6 +442,10 @@ CREATE TABLE `lpk_program_member` (
   `param_pembayaran_2` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
   `param` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data untuk tabel `lpk_program_member`
+--
 
 INSERT INTO `lpk_program_member` (`id`, `user_id`, `lpk_program_id`, `name`, `param_pembayaran_1`, `param_pembayaran_2`, `param`) VALUES
 (1, 10, 2, '8Aan', '{\"lunas\": \"1\", \"nominal\": \"100000\", \"Nama_Bank\": \"bri\", \"atas_nama\": \"iwan safrudin\", \"Nomor_Rekening\": \"987897899\", \"bukti_transfer\": \"bukti_transfer_bri.jpg\"}', 'null', '{\"id\": \"2\", \"foto\": \"foto_Bahasa_Inggris.png\", \"title\": \"Bahasa Inggris\", \"jadwal\": \"senin sampai jumat\", \"lpk_id\": \"1\", \"syarat\": \"<ol><li>ktp / kartu pelajar</li><li>kartu keluarga</li><li>domisili pati</li></ol>\", \"created\": \"2020-07-11 03:21:06\", \"updated\": \"2020-07-14 21:48:04\", \"lain_lain\": \"tetap semangat never surender\", \"description\": \"pelatihan bahasa inggris dari dasar sampai mahir dengan biaya cukup 2 juta selama 2 bulan\", \"lama_kursus\": \"2\", \"pembayaran_1\": \"1000000\", \"pembayaran_2\": \"1000000\"}'),
@@ -346,7 +482,12 @@ INSERT INTO `lpk_program_member` (`id`, `user_id`, `lpk_program_id`, `name`, `pa
 (32, 41, 9, 'muvZ', NULL, NULL, '{\"id\":\"9\",\"title\":\"Kursus Stir Mobil\",\"description\":\"\",\"foto\":\"foto_LKP_NISSAN_FORTUNA_PATI.jpg\",\"syarat\":\"\",\"lama_kursus\":\"2\",\"jadwal\":\"20x Pertemuan\",\"pembayaran_1\":\"700\",\"pembayaran_2\":\"900\",\"lain_lain\":\"<iframe src=\\\"https:\\/\\/www.google.com\\/maps\\/embed?pb=!1m18!1m12!1m3!1d63388.66810826814!2d111.01122289317419!3d-6.795173492616266!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e70d2509b7e7bfb%3A0x9b0dd260bae1dbdb!2sLembaga%20Kursus%20Dan%20Pelatihan%20Nissan%20Fortuna%20pati!5e0!3m2!1sid!2sid!4v1597284171767!5m2!1sid!2sid\\\" width=\\\"600\\\" height=\\\"450\\\" frameborder=\\\"0\\\" style=\\\"border:0;\\\" allowfullscreen=\\\"\\\" aria-hidden=\\\"false\\\" tabindex=\\\"0\\\"><\\/iframe>\",\"lpk_id\":\"0\",\"created\":\"2020-08-13 09:13:09\",\"updated\":\"2021-06-29 11:59:11\"}'),
 (33, 41, 4, 'muvU', NULL, NULL, '{\"id\":\"4\",\"title\":\"LKP PEPABRI PATI\",\"description\":\"- Kursus Stir Mobil\\r\\n- Kursus Montir Mobil\\r\\n- Kursus Montir Sepeda Motor\",\"foto\":\"foto_LKP_PEPABRI_PATI.jpg\",\"syarat\":\"<p>Pendidikan Serendah-rendahnya SD<\\/p><p><br>- Untuk masing-masing jenis kursus dikenakan uang pendaftaran sebesar Rp. 50.000,- sertifikat Rp.50.000,-<br>- Bagi siswa yang membatalkan diri dari kursus uang pendaftaran tidak dapat diminta lagi<br>- Bagi siswa yang tidak lulus ujian dapat mengulang kembali tanpa dipungut biaya<br><\\/p>\",\"lama_kursus\":\"3\",\"jadwal\":\"Pagi jam 08.00 - Siang jam 14.30 - Sore jam 15.00\",\"pembayaran_1\":\"700\",\"pembayaran_2\":\"900\",\"lain_lain\":\"<iframe src=\\\"https:\\/\\/www.google.com\\/maps\\/embed?pb=!1m18!1m12!1m3!1d63389.29922731928!2d111.01570004316727!3d-6.79038439348578!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e70d2ff81bcaf79%3A0x79f597e7bcd6a8db!2sKursus%20mengemudi%20Pati%20(LKP%20Pepabri)!5e0!3m2!1sid!2sid!4v1597287540878!5m2!1sid!2sid\\\" width=\\\"600\\\" height=\\\"450\\\" frameborder=\\\"0\\\" style=\\\"border:0;\\\" allowfullscreen=\\\"\\\" aria-hidden=\\\"false\\\" tabindex=\\\"0\\\"><\\/iframe>\",\"lpk_id\":\"1\",\"created\":\"2020-07-15 00:42:44\",\"updated\":\"2020-08-13 09:59:31\"}');
 
-DROP TABLE IF EXISTS `member`;
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `member`
+--
+
 CREATE TABLE `member` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
@@ -355,6 +496,10 @@ CREATE TABLE `member` (
   `created` datetime NOT NULL DEFAULT current_timestamp(),
   `updated` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data untuk tabel `member`
+--
 
 INSERT INTO `member` (`id`, `user_id`, `name`, `param`, `created`, `updated`) VALUES
 (9, 4, '5f07ce0f93a30', '{\"nama\": \"bambang\", \"name\": \"5f07ce0f93a30\", \"email\": \"bambang@gmail.com\", \"alamat\": \"\", \"lpk_id\": \"1\", \"password\": \"$2y$10$SyFhNnVBFO3g.fyXx0DW1ewsXm/mQi8v2a.LHj/GsV2VLO13jKw/.\", \"username\": \"bambang\", \"user_role_id\": \"4\", \"jenis_kelamin\": \"1\", \"image_foto_diri\": \"\"}', '2020-07-10 09:10:23', '2020-07-27 00:36:58'),
@@ -380,7 +525,12 @@ INSERT INTO `member` (`id`, `user_id`, `name`, `param`, `created`, `updated`) VA
 (32, 39, '60db6c119fa30', '{\"nama\":\"LKP ASY SYIFA\",\"name\":\"60db6bc3d9173\",\"alamat\":\"kayen\",\"image_foto_diri\":\"\",\"jenis_kelamin\":\"2\",\"lpk_id\":\"14\",\"username\":\"lpksyifa\",\"email\":\"lpksyifa@gmail.com\",\"password\":\"$2y$10$36oIwW.EX27yXVwTAA78T.myXEGFRXiHfHvwhdvDFfN0oDDPqn3Ky\",\"user_role_id\":\"3\"}', '2021-06-29 11:53:06', '2021-06-29 11:53:06'),
 (33, 40, '60db6cd52500c', '{\"nama\":\"LKP ARDIAN\",\"name\":\"60db6c9b69120\",\"alamat\":\"pati\",\"image_foto_diri\":\"\",\"jenis_kelamin\":\"2\",\"lpk_id\":\"15\",\"username\":\"lpkardian\",\"email\":\"lpkardian@gmail.com\",\"password\":\"$2y$10$4JZu1NL2O\\/u7xSPlIMRwKONQsAMrZQFZWet6TMRMfxSV9bvh31\\/o2\",\"user_role_id\":\"3\"}', '2021-06-29 11:56:21', '2021-06-29 11:56:21');
 
-DROP TABLE IF EXISTS `menu`;
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `menu`
+--
+
 CREATE TABLE `menu` (
   `id` int(11) NOT NULL,
   `par_id` int(11) NOT NULL DEFAULT 0,
@@ -392,10 +542,19 @@ CREATE TABLE `menu` (
   `publish` tinyint(1) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data untuk tabel `menu`
+--
+
 INSERT INTO `menu` (`id`, `par_id`, `position_id`, `sort_order`, `title`, `link`, `tpl`, `publish`) VALUES
 (2, 0, 1, 0, 'Beranda', 'https://silkup.mdw.co.id', '', 1);
 
-DROP TABLE IF EXISTS `menu_position`;
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `menu_position`
+--
+
 CREATE TABLE `menu_position` (
   `id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
@@ -403,10 +562,19 @@ CREATE TABLE `menu_position` (
   `updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data untuk tabel `menu_position`
+--
+
 INSERT INTO `menu_position` (`id`, `title`, `created`, `updated`) VALUES
 (1, 'Top Menu', '2018-11-12 02:16:02', '2020-07-14 16:53:26');
 
-DROP TABLE IF EXISTS `message`;
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `message`
+--
+
 CREATE TABLE `message` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
@@ -418,7 +586,12 @@ CREATE TABLE `message` (
   `updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `product`;
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `product`
+--
+
 CREATE TABLE `product` (
   `id` int(11) NOT NULL,
   `cat_ids` mediumtext NOT NULL,
@@ -436,7 +609,12 @@ CREATE TABLE `product` (
   `updated` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `product_cat`;
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `product_cat`
+--
+
 CREATE TABLE `product_cat` (
   `id` int(11) NOT NULL,
   `par_id` int(11) NOT NULL,
@@ -449,7 +627,12 @@ CREATE TABLE `product_cat` (
   `updated` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `product_tag`;
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `product_tag`
+--
+
 CREATE TABLE `product_tag` (
   `id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
@@ -457,7 +640,12 @@ CREATE TABLE `product_tag` (
   `created` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-DROP TABLE IF EXISTS `subscriber`;
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `subscriber`
+--
+
 CREATE TABLE `subscriber` (
   `id` int(11) NOT NULL,
   `email` varchar(255) NOT NULL,
@@ -465,10 +653,19 @@ CREATE TABLE `subscriber` (
   `updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data untuk tabel `subscriber`
+--
+
 INSERT INTO `subscriber` (`id`, `email`, `created`, `updated`) VALUES
 (1, 'iwansafr@gmail.com', '2019-04-22 06:39:07', '2020-07-14 16:53:26');
 
-DROP TABLE IF EXISTS `trash`;
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `trash`
+--
+
 CREATE TABLE `trash` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
@@ -477,6 +674,10 @@ CREATE TABLE `trash` (
   `table_content` mediumtext NOT NULL,
   `created` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data untuk tabel `trash`
+--
 
 INSERT INTO `trash` (`id`, `user_id`, `table_id`, `table_title`, `table_content`, `created`) VALUES
 (1, 11, 93, 'content', '{\"id\":\"93\",\"cat_ids\":\",29,\",\"par_id\":\"0\",\"tpl\":\"0\",\"tag_ids\":\"\",\"title\":\"slider 3\",\"slug\":\"slider-3\",\"description\":\"slider 3\",\"keyword\":\"slider 3\",\"intro\":\"slider 3\",\"content\":\"slider 3\",\"source\":\"\",\"image\":\"image_slider_3.PNG\",\"icon\":\"\",\"image_link\":\"\",\"images\":\"\",\"videos\":\"\",\"document\":\"\",\"author\":\"lpkfortunapati\",\"hits\":\"0\",\"last_hits\":\"0000-00-00 00:00:00\",\"rating\":\"\",\"params\":\"\",\"created\":\"2020-07-16 19:03:34\",\"updated\":\"2020-07-17 21:17:42\",\"publish\":\"1\"}', '2020-07-17 21:20:41'),
@@ -540,7 +741,12 @@ INSERT INTO `trash` (`id`, `user_id`, `table_id`, `table_title`, `table_content`
 (62, 2, 7, 'lpk', '{\"id\":\"7\",\"title\":\"LPK Kabupaten Kudus\",\"image\":\"image_LPK_Kabupaten_Kudus.jpg\",\"description\":\"Lpk Kudus\",\"latitude\":\"\",\"longitude\":\"\",\"created\":\"2021-03-23 02:42:58\",\"updated\":\"2021-03-23 03:54:19\"}', '2021-06-29 12:26:00'),
 (63, 2, 9, 'lpk', '{\"id\":\"9\",\"title\":\"Lpk Kabupaten Jepara\",\"image\":\"image_Lpk_Kabupaten_Jepara.jpg\",\"description\":\"Lpk Jepara\",\"latitude\":\"\",\"longitude\":\"\",\"created\":\"2021-03-23 03:57:12\",\"updated\":\"2021-03-23 03:57:12\"}', '2021-06-29 12:26:00');
 
-DROP TABLE IF EXISTS `user`;
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `user`
+--
+
 CREATE TABLE `user` (
   `id` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
@@ -552,6 +758,10 @@ CREATE TABLE `user` (
   `created` datetime NOT NULL DEFAULT current_timestamp(),
   `updated` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data untuk tabel `user`
+--
 
 INSERT INTO `user` (`id`, `username`, `password`, `email`, `image`, `user_role_id`, `active`, `created`, `updated`) VALUES
 (1, 'root', '$2y$10$Cl4.5IqxiOiB.osC76GZr.TreZcuenu/YxSScom7nQYgyekBdFD1G', 'root@esoftgreat.com', 'image_root.jpeg', 1, 1, '2018-11-03 07:36:32', '2020-07-14 16:53:26'),
@@ -568,7 +778,12 @@ INSERT INTO `user` (`id`, `username`, `password`, `email`, `image`, `user_role_i
 (41, 'hadi', '$2y$10$3DOLs8WV9XpkiEr/dxHmYubAHL8dmhQ0nZ9Rl.fyqDh6rmp0bo.t6', 'hadi@gmail.com', '', 4, 1, '2021-06-29 12:03:37', '2021-06-29 12:27:14'),
 (42, 'yogi', '$2y$10$9ePBBCqCOQKYC7kSSH25/.Ll.9tevZJqtkiGxd1994c.TA/wuw77i', 'yogi@gmail.com', '', 4, 1, '2021-06-29 12:43:12', '2021-06-29 13:04:58');
 
-DROP TABLE IF EXISTS `user_login`;
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `user_login`
+--
+
 CREATE TABLE `user_login` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
@@ -577,6 +792,10 @@ CREATE TABLE `user_login` (
   `status` tinyint(1) NOT NULL COMMENT '0=failed, 1=success',
   `created` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data untuk tabel `user_login`
+--
 
 INSERT INTO `user_login` (`id`, `user_id`, `ip`, `browser`, `status`, `created`) VALUES
 (1, 1, '182.1.64.116', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36', 1, '2018-12-25 07:49:26'),
@@ -1400,13 +1619,22 @@ INSERT INTO `user_login` (`id`, `user_id`, `ip`, `browser`, `status`, `created`)
 (859, 11, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:89.0) Gecko/20100101 Firefox/89.0', 1, '2021-06-30 04:41:19'),
 (860, 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:89.0) Gecko/20100101 Firefox/89.0', 1, '2021-06-30 04:49:11');
 
-DROP TABLE IF EXISTS `user_login_failed`;
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `user_login_failed`
+--
+
 CREATE TABLE `user_login_failed` (
   `id` int(11) NOT NULL,
   `user_login_id` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data untuk tabel `user_login_failed`
+--
 
 INSERT INTO `user_login_failed` (`id`, `user_login_id`, `username`, `password`) VALUES
 (1, 410, 'root', 'Dks_080308'),
@@ -1507,7 +1735,12 @@ INSERT INTO `user_login_failed` (`id`, `user_login_id`, `username`, `password`) 
 (96, 833, 'hadi', '1'),
 (97, 847, 'admin', '1');
 
-DROP TABLE IF EXISTS `user_member`;
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `user_member`
+--
+
 CREATE TABLE `user_member` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
@@ -1516,6 +1749,10 @@ CREATE TABLE `user_member` (
   `created` datetime NOT NULL DEFAULT current_timestamp(),
   `updated` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data untuk tabel `user_member`
+--
 
 INSERT INTO `user_member` (`id`, `user_id`, `name`, `param`, `created`, `updated`) VALUES
 (1, 3, '5f07cd50e358c', '{\"nama\": \"lpk fortuna\", \"name\": \"5f07cd50e358c\", \"email\": \"lpkfortuna@gmail.com\", \"alamat\": \"\", \"lpk_id\": \"3\", \"password\": \"$2y$10$NPjm0.mCpQuht.JCyXi0NuO6AiyeuITb2IVJQzhVnh4crhGFpgtQu\", \"username\": \"lpkfortuna\", \"user_role_id\": \"3\", \"jenis_kelamin\": \"1\", \"image_foto_diri\": \"\"}', '2020-07-10 09:07:12', '2020-07-14 16:53:26'),
@@ -1529,7 +1766,12 @@ INSERT INTO `user_member` (`id`, `user_id`, `name`, `param`, `created`, `updated
 (18, 41, '60db6e892bff8', '{\"lpk_id\":\"1\",\"nama\":\"hadi\",\"name\":\"60db6e892bff8\",\"alamat\":\"pati\",\"image_foto_diri\":\"\",\"jenis_kelamin\":\"1\",\"no_wa\":\"856321330\",\"username\":\"hadi\",\"email\":\"hadi@gmail.com\",\"password\":\"$2y$10$3DOLs8WV9XpkiEr\\/dxHmYubAHL8dmhQ0nZ9Rl.fyqDh6rmp0bo.t6\",\"user_role_id\":\"4\"}', '2021-06-29 12:03:37', '2021-06-29 12:27:14'),
 (19, 42, '60db77d006eae', '{\"lpk_id\":\"11\",\"nama\":\"yogi\",\"name\":\"60db77d006eae\",\"alamat\":\"kayen\",\"image_foto_diri\":\"\",\"jenis_kelamin\":\"1\",\"no_wa\":\"08524575435\",\"username\":\"yogi\",\"email\":\"yogi@gmail.com\",\"password\":\"$2y$10$9ePBBCqCOQKYC7kSSH25\\/.Ll.9tevZJqtkiGxd1994c.TA\\/wuw77i\",\"user_role_id\":\"4\"}', '2021-06-29 12:43:12', '2021-06-29 13:04:58');
 
-DROP TABLE IF EXISTS `user_role`;
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `user_role`
+--
+
 CREATE TABLE `user_role` (
   `id` int(11) NOT NULL,
   `level` tinyint(4) NOT NULL,
@@ -1539,13 +1781,22 @@ CREATE TABLE `user_role` (
   `updated` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data untuk tabel `user_role`
+--
+
 INSERT INTO `user_role` (`id`, `level`, `title`, `description`, `created`, `updated`) VALUES
 (1, 1, 'root', 'super user', '2018-11-02 22:57:22', '2020-07-14 16:53:26'),
 (2, 2, 'admin', 'the administrator', '2018-11-02 22:57:22', '2020-07-14 16:53:26'),
 (3, 5, 'Member', 'User member yang hanya berlangganan saja', '2018-11-04 12:59:26', '2020-07-14 16:53:26'),
 (4, 6, 'Siswa', 'akun untuk siswa', '2020-07-10 02:02:02', '2020-07-14 16:53:26');
 
-DROP TABLE IF EXISTS `visitor`;
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `visitor`
+--
+
 CREATE TABLE `visitor` (
   `id` int(11) NOT NULL,
   `ip` varchar(50) NOT NULL,
@@ -1556,6 +1807,10 @@ CREATE TABLE `visitor` (
   `browser` varchar(255) NOT NULL,
   `created` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data untuk tabel `visitor`
+--
 
 INSERT INTO `visitor` (`id`, `ip`, `visited`, `city`, `region`, `country`, `browser`, `created`) VALUES
 (1, '36.65.174.34', 'https://www.lumbungmas.dinusa.co.id/', 'Kradenan', 'Jawa Tengah', 'ID', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3770.100 Safari/537.36', '2019-07-01 21:18:13'),
@@ -14010,194 +14265,386 @@ INSERT INTO `visitor` (`id`, `ip`, `visited`, `city`, `region`, `country`, `brow
 (12540, '127.0.0.1', 'http://localhost/silkup/home/lpk/program_detail/9/LKP%20NISSAN%20FORTUNA%20PATI', '', '', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:89.0) Gecko/20100101 Firefox/89.0', '2021-06-30 04:41:49'),
 (12541, '127.0.0.1', 'http://localhost/silkup/templates/AdminLTE/dist/img/user2-160x160.jpg', '', '', '', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:89.0) Gecko/20100101 Firefox/89.0', '2021-06-30 04:41:50');
 
+--
+-- Indexes for dumped tables
+--
 
+--
+-- Indeks untuk tabel `admin_menu`
+--
 ALTER TABLE `admin_menu`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indeks untuk tabel `bank_account`
+--
 ALTER TABLE `bank_account`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indeks untuk tabel `coba`
+--
 ALTER TABLE `coba`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indeks untuk tabel `comment`
+--
 ALTER TABLE `comment`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indeks untuk tabel `config`
+--
 ALTER TABLE `config`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indeks untuk tabel `content`
+--
 ALTER TABLE `content`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indeks untuk tabel `content_cat`
+--
 ALTER TABLE `content_cat`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id` (`id`);
 
+--
+-- Indeks untuk tabel `content_tag`
+--
 ALTER TABLE `content_tag`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indeks untuk tabel `instruktur`
+--
 ALTER TABLE `instruktur`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indeks untuk tabel `invoice`
+--
 ALTER TABLE `invoice`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indeks untuk tabel `lpk`
+--
 ALTER TABLE `lpk`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `title` (`title`);
 
+--
+-- Indeks untuk tabel `lpk_data`
+--
 ALTER TABLE `lpk_data`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `name` (`name`);
 
+--
+-- Indeks untuk tabel `lpk_data_dok`
+--
 ALTER TABLE `lpk_data_dok`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indeks untuk tabel `lpk_program`
+--
 ALTER TABLE `lpk_program`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indeks untuk tabel `lpk_program_member`
+--
 ALTER TABLE `lpk_program_member`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indeks untuk tabel `member`
+--
 ALTER TABLE `member`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indeks untuk tabel `menu`
+--
 ALTER TABLE `menu`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indeks untuk tabel `menu_position`
+--
 ALTER TABLE `menu_position`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indeks untuk tabel `message`
+--
 ALTER TABLE `message`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indeks untuk tabel `product`
+--
 ALTER TABLE `product`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indeks untuk tabel `product_cat`
+--
 ALTER TABLE `product_cat`
   ADD PRIMARY KEY (`id`),
   ADD KEY `id` (`id`);
 
+--
+-- Indeks untuk tabel `product_tag`
+--
 ALTER TABLE `product_tag`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indeks untuk tabel `subscriber`
+--
 ALTER TABLE `subscriber`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indeks untuk tabel `trash`
+--
 ALTER TABLE `trash`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`);
 
+--
+-- Indeks untuk tabel `user`
+--
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indeks untuk tabel `user_login`
+--
 ALTER TABLE `user_login`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indeks untuk tabel `user_login_failed`
+--
 ALTER TABLE `user_login_failed`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indeks untuk tabel `user_member`
+--
 ALTER TABLE `user_member`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indeks untuk tabel `user_role`
+--
 ALTER TABLE `user_role`
   ADD PRIMARY KEY (`id`);
 
+--
+-- Indeks untuk tabel `visitor`
+--
 ALTER TABLE `visitor`
   ADD PRIMARY KEY (`id`);
 
+--
+-- AUTO_INCREMENT untuk tabel yang dibuang
+--
 
+--
+-- AUTO_INCREMENT untuk tabel `admin_menu`
+--
 ALTER TABLE `admin_menu`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
+--
+-- AUTO_INCREMENT untuk tabel `bank_account`
+--
 ALTER TABLE `bank_account`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
+--
+-- AUTO_INCREMENT untuk tabel `coba`
+--
 ALTER TABLE `coba`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
+--
+-- AUTO_INCREMENT untuk tabel `comment`
+--
 ALTER TABLE `comment`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT untuk tabel `config`
+--
 ALTER TABLE `config`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
+--
+-- AUTO_INCREMENT untuk tabel `content`
+--
 ALTER TABLE `content`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
 
+--
+-- AUTO_INCREMENT untuk tabel `content_cat`
+--
 ALTER TABLE `content_cat`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
+--
+-- AUTO_INCREMENT untuk tabel `content_tag`
+--
 ALTER TABLE `content_tag`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT untuk tabel `instruktur`
+--
 ALTER TABLE `instruktur`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
+--
+-- AUTO_INCREMENT untuk tabel `invoice`
+--
 ALTER TABLE `invoice`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT untuk tabel `lpk`
+--
 ALTER TABLE `lpk`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
+--
+-- AUTO_INCREMENT untuk tabel `lpk_data`
+--
 ALTER TABLE `lpk_data`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
+--
+-- AUTO_INCREMENT untuk tabel `lpk_data_dok`
+--
 ALTER TABLE `lpk_data_dok`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
+--
+-- AUTO_INCREMENT untuk tabel `lpk_program`
+--
 ALTER TABLE `lpk_program`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
+--
+-- AUTO_INCREMENT untuk tabel `lpk_program_member`
+--
 ALTER TABLE `lpk_program_member`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
+--
+-- AUTO_INCREMENT untuk tabel `member`
+--
 ALTER TABLE `member`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
+--
+-- AUTO_INCREMENT untuk tabel `menu`
+--
 ALTER TABLE `menu`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
+--
+-- AUTO_INCREMENT untuk tabel `menu_position`
+--
 ALTER TABLE `menu_position`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
+--
+-- AUTO_INCREMENT untuk tabel `message`
+--
 ALTER TABLE `message`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT untuk tabel `product`
+--
 ALTER TABLE `product`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT untuk tabel `product_cat`
+--
 ALTER TABLE `product_cat`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT untuk tabel `product_tag`
+--
 ALTER TABLE `product_tag`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
+--
+-- AUTO_INCREMENT untuk tabel `subscriber`
+--
 ALTER TABLE `subscriber`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
+--
+-- AUTO_INCREMENT untuk tabel `trash`
+--
 ALTER TABLE `trash`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
+--
+-- AUTO_INCREMENT untuk tabel `user`
+--
 ALTER TABLE `user`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
+--
+-- AUTO_INCREMENT untuk tabel `user_login`
+--
 ALTER TABLE `user_login`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=861;
 
+--
+-- AUTO_INCREMENT untuk tabel `user_login_failed`
+--
 ALTER TABLE `user_login_failed`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
 
+--
+-- AUTO_INCREMENT untuk tabel `user_member`
+--
 ALTER TABLE `user_member`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
+--
+-- AUTO_INCREMENT untuk tabel `user_role`
+--
 ALTER TABLE `user_role`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
+--
+-- AUTO_INCREMENT untuk tabel `visitor`
+--
 ALTER TABLE `visitor`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12542;
 
+--
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+--
 
+--
+-- Ketidakleluasaan untuk tabel `trash`
+--
 ALTER TABLE `trash`
   ADD CONSTRAINT `trash_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
