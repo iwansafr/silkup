@@ -2,6 +2,10 @@
 if(!empty($data))
 {
 	$param = json_decode($data['param'],1);
+	if(!empty($param['lpk_id']))
+	{
+		$lpk = $this->db->get_where('lpk',['id'=>$param['lpk_id']])->row_array();
+	}
 	?>
 	<div class="panel panel-default">
 		<div class="panel-heading">Biodata <?php echo $status['title'] ?></div>
@@ -38,6 +42,10 @@ if(!empty($data))
 				<tr>
 					<td style="width: 30%;">Foto Diri</td>
 					<td>: <img class="img-responsive" src="<?php echo image_module('member',$param['name'].'/'.$param['image_foto_diri']) ?>" alt=""></td>
+				</tr>
+				<tr>
+					<td style="width: 30%;">LPK yang diikuti</td>
+					<td> <?php echo $lpk['title'] ?> </td>
 				</tr>
 			</table>
 		</div>

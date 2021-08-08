@@ -14,7 +14,7 @@ if(!empty($role_member))
 		 JSON_EXTRACT(member.param,"$.email") AS email,
 		 JSON_EXTRACT(member.param,"$.user_role_id") AS user_role_id
 		 ');
-	$form->setWhere('JSON_EXTRACT(member.param,"$.user_role_id") = '.$role_member['id']);
+	$form->setWhere('JSON_EXTRACT(member.param,"$.user_role_id") = "'.$role_member['id'].'"');
 	$form->setParamName(uniqid());
 	$form->param_field = 'param';
 	$form->addInput('id','plaintext');
@@ -55,7 +55,7 @@ if(!empty($role_member))
 	$form->setUrl('admin/member/clear_list');
 
 	$form->form();
-	pr($form->getData());
+	// pr($form->getData());
 }else{
 	msg('mohon maaf group member tidak tersedia','danger');
 }

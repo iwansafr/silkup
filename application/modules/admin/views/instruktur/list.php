@@ -5,10 +5,15 @@ if($is_member)
 {
 	$form = new zea();
 
+	$this->load->model('member_model');
+	$lpk_id = $this->member_model->get_lpk_id();
+	if(!empty($lpk_id))
+	{
+		$form->setWhere('lpk_id = '.$lpk_id);
+	}
 	$form->init('roll');
 	$form->setNumbering();
 	$form->setTable('instruktur');
-	$form->form();
 	$form->search();
 	$form->addInput('id','hidden');
 	$form->addInput('nama','plaintext');
@@ -19,7 +24,7 @@ if($is_member)
 
 	if($is_member)
 	{
-		$user_detail = $this->db->query('SELECT param FROM user_member WHERE JSON_EXTRACT(user_member.param,"$.username") = ?',$_SESSION[base_url('_logged_in')]['username'])->row_array();
+		$user_detail = $this->db->query('SELECT param FROM member WHERE JSON_EXTRACT(member.param,"$.username") = ?',$_SESSION[base_url('_logged_in')]['username'])->row_array();
 		if(!empty($user_detail))
 		{
 			$user_detail = json_decode($user_detail['param'],1);

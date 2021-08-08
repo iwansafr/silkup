@@ -8,6 +8,8 @@ if(!empty($lpk_id))
 
 	$form->setTable('lpk_program');
 
+	$form->setWhere('lpk_id = '.$lpk_id);
+
 	$form->setNumbering();
 	$form->addInput('id','plaintext');
 	$form->setPlainText('id',[

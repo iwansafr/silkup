@@ -22,7 +22,7 @@ if(!empty($field))
 			{
 				foreach ($output[0] as $output_key => $output_value) 
 				{
-					$tmp_output_value; $output_value;
+					$tmp_output_value = $output_value;
 					$tmp_output_value = str_replace('{', '', $output_value);
 					$tmp_output_value = str_replace('}', '', $tmp_output_value);
 					$data_value = preg_replace('~'.$output_value.'~', $data[$tmp_output_value], $data_value);
@@ -42,10 +42,25 @@ if(!empty($field))
 			{
 				foreach ($output[0] as $output_key => $output_value) 
 				{
-					$tmp_output_value; $output_value;
+					$tmp_output_value = $output_value;
 					$tmp_output_value = str_replace('{', '', $output_value);
 					$tmp_output_value = str_replace('}', '', $tmp_output_value);
 					$data_value = preg_replace('~'.$output_value.'~', $dvalue[$tmp_output_value], $data_value);
+				}
+			}
+			if(preg_match_all('~\[.*?\]~', $data_value, $output))
+			{
+				// pr($output);
+			}
+			if(!empty($output))
+			{
+				foreach ($output[0] as $output_key => $output_value) 
+				{
+					$tmp_output_value = $output_value;
+					$tmp_output_value = str_replace('[', '', $output_value);
+					$tmp_output_value = str_replace(']', ';', $tmp_output_value);
+					$tmp_output_value = eval('return '.$tmp_output_value);
+					$data_value = str_replace($output_value, $tmp_output_value, $data_value);
 				}
 			}
 		}

@@ -13,7 +13,7 @@ if(check_role('siswa'))
 	$form->addInput('id','plaintext');
 	$form->setLabel('id','action');
 	$form->setPlainText('id',[
-		'#'=>'Detail'
+		base_url('admin/program/register/[esg_encrypt({id})]')=>'Detail'
 	]);
 	$form->addInput('title','plaintext');
 	$form->setLabel('title','nama program');

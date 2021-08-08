@@ -3,7 +3,7 @@ if(!empty($role_member))
 {
 	$this->zea->init('param');
 
-	$this->zea->setTable('`member`');
+	$this->zea->setTable('member');
 	$this->zea->setId($id);
 	$name = !empty($name) ? $name : uniqid();
 	$this->zea->setParamName($name);
@@ -14,7 +14,7 @@ if(!empty($role_member))
 	$this->zea->setValue('name',$name);
 	$this->zea->addInput('alamat','textarea');
 	$this->zea->addInput('image_foto_diri','file');
-	$this->zea->setAccept('image_foto_diri','.jpg, .png, .jpeg');
+	$this->zea->setAccept('image_foto_diri','.jpg, .png');
 	$this->zea->setLabel('image_foto_diri','foto');
 	$this->zea->addInput('jenis_kelamin','dropdown');
 	$this->zea->setOptions('jenis_kelamin',['1'=>'Laki-laki','2'=>'Perempuan']);

@@ -11,7 +11,7 @@ $form->removeNone('lpk_id');
 
 if(check_role('member'))
 {
-	$user_detail = $this->db->query('SELECT param FROM user_member WHERE JSON_EXTRACT(user_member.param,"$.username") = ?',$user['username'])->row_array();
+	$user_detail = $this->db->query('SELECT param FROM member WHERE JSON_EXTRACT(member.param,"$.username") = ?',$user['username'])->row_array();
 	if(!empty($user_detail))
 	{
 		$user_detail = json_decode($user_detail['param'],1);

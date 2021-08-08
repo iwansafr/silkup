@@ -115,7 +115,7 @@
           <li class="user-body">
             <div class="row">
               <div class="col-xs-4 text-center">
-                <a href="#" class="btn btn-sm btn-default">Program</a>
+                <a href="<?php echo base_url('admin/program') ?>" class="btn btn-sm btn-default">Program</a>
               </div>
               <div class="col-xs-4 text-center">
                 <a href="#" class="btn btn-sm btn-default">Tagihan</a>
