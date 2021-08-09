@@ -13,8 +13,8 @@ if(!empty($role_member))
 	$this->zea->addInput('name','hidden');
 	$this->zea->setValue('name',$name);
 	$this->zea->addInput('alamat','textarea');
-	$this->zea->addInput('image_foto_diri','file');
-	$this->zea->setAccept('image_foto_diri','.jpg, .png');
+	$this->zea->addInput('image_foto_diri','upload');
+	$this->zea->setAccept('image_foto_diri','.jpg,.png,.jpeg');
 	$this->zea->setLabel('image_foto_diri','foto');
 	$this->zea->addInput('jenis_kelamin','dropdown');
 	$this->zea->setOptions('jenis_kelamin',['1'=>'Laki-laki','2'=>'Perempuan']);
