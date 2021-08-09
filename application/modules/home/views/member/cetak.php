@@ -41,7 +41,7 @@ if(!empty($data))
 				</tr>
 				<tr>
 					<td style="width: 30%;">Foto Diri</td>
-					<td>: <img class="img-responsive" src="<?php echo image_module('member',$param['name'].'/'.$param['image_foto_diri']) ?>" alt=""></td>
+					<td>: <img class="img-responsive" src="<?php echo image_module('user_member',$data['name'].'/'.$param['image_foto_diri']) ?>" alt=""></td>
 				</tr>
 				<tr>
 					<td style="width: 30%;">LPK yang diikuti</td>
